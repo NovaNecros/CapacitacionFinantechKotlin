@@ -8,41 +8,39 @@ fun main()
 
     contador = 5
     println("Hola Mundo ${contador}\n")
-    println("El valor de pi es ${pi}")
+    println("El valor de pi es $pi")
 
-    var x = 3
-    var y : Int = 4
+    val x = 3
+    val y : Int = 4
     val z : Int = 6 //pruebo cambiar var por val
 
-    var a = arrayOf(3,6,7,8,9,2)
+    val a = arrayOf(3,6,7,8,9,2)
 
     println("El valor de x es $x")
-    println("El valor de y es ${y}")
+    println("El valor de y es $y")
 
     println("\n\nLos elementos del arreglo son:")
     for(ai in a)
     {
-        print("${ai} ") //intento imprimir todo el arreglo en un solo renglon
+        print("$ai ") //intento imprimir t o d o el arreglo en un solo renglon
     }
 
     println("\n\nCiclo en un rango:")
     for(i in 0..5)
     {
-        print("${i} ")
+        print("$i ")
     }
 
     println("\n\nCiclo en un rango inverso:")
     for(i in (0..5).reversed())
     {
-        print("${i} ")
+        print("$i ")
     }
 
-    var opcion : String
-    var edad : Int
 
     println("\n\nDime tu edad:")
-    opcion = readLine() ?: ""
-    edad = opcion.toInt()
+    val opcion : String = readlnOrNull() ?: ""
+    val edad = opcion.toInt()
 
     if(edad >= 18)
     {
