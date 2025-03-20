@@ -1,12 +1,17 @@
-fun main()
+//imprime las tablas de multiplicar en cualquier base
+fun tablasBase(base:Int)
 {
-    for(i in 1..15)
+    for(i in 1..base-1)
     {
         println()
-        for(j in 1..15)
+        for(j in 1..base-1)
         {
-            //imprime los resultados en hexadecimal
-            print("${(i*j).toString(16)}\t")
+            print("${(i*j).toString(base)}\t")
         }
     }
+}
+
+fun main()
+{
+    tablasBase(21)
 }
