@@ -43,7 +43,25 @@ fun insertionSort(numeros : Array<Int>, n : Int)
 
 fun selectionSort(numeros : Array<Int>, n : Int)
 {
-    //TODO
+    for(i in 0 until n)
+    {
+        var jmin : Int = i
+
+        for(j in i+1 until n)
+        {
+            if(numeros[j] < numeros[jmin])
+            {
+                jmin = j
+            }
+        }
+
+        if(jmin != i)
+        {
+            val temp : Int = numeros[jmin]
+            numeros[jmin] = numeros[i]
+            numeros[i] = temp
+        }
+    }
 }
 
 fun quickSort(numeros : Array<Int>, n : Int)
@@ -67,12 +85,21 @@ fun imprimirDatos(numeros : Array<Int>, n : Int)
 
 fun main(args : Array<String>)
 {
-    var numeros : Array<Int> = arrayOf(9,6,7,2,5,3)
-    var tam : Int = numeros.size
+    val numeros : Array<Int> = arrayOf(9,6,7,2,5,3)
+    val tam : Int = numeros.size
+    val opcion : Int = 1
 
     imprimirDatos(numeros, tam)
     println("Ordenado:")
-    insertionSort(numeros, tam)
+
+    when(opcion)
+    {
+        1 -> bubbleSort(numeros, tam)
+        2 -> insertionSort(numeros, tam)
+        3 -> selectionSort(numeros, tam)
+        else -> println(":(")
+    }
+
     imprimirDatos(numeros, tam)
 
     return
