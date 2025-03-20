@@ -100,9 +100,22 @@ fun quickSort(numeros : Array<Int>, n : Int)
     quickSort(numeros, 0, n-1)
 }
 
-fun mergeSort(numeros : Array<Int>, n : Int)
+fun merge(numeros : Array<Int>, ini : Int, mid : Int, fin : Int)
 {
     //TODO
+}
+
+fun mergeSort(numeros : Array<Int>, ini : Int, fin : Int)
+{
+    val mid : Int = ini + (fin - ini) / 2
+    mergeSort(numeros, ini, mid)
+    mergeSort(numeros, mid+1, fin)
+    merge(numeros, ini, mid, fin)
+}
+
+fun mergeSort(numeros : Array<Int>, n : Int)
+{
+    mergeSort(numeros, 0, n-1)
 }
 
 fun imprimirDatos(numeros : Array<Int>, n : Int)
