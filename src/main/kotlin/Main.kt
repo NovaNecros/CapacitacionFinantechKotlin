@@ -13,5 +13,7 @@ fun tablasBase(base:Int)
 
 fun main()
 {
-    tablasBase(21)
+    val base : Int = 16
+    println("Base: ${base}")
+    tablasBase(base)
 }
