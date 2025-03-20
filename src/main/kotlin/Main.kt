@@ -1,17 +1,47 @@
 fun bubbleSort(numeros : Array<Int>, n : Int)
 {
+    var intercambio : Boolean = false
+
     for(i in 0 until n-1)
     {
+        intercambio = false
+
         for(j in 0 until n-1-i)
         {
             if(numeros[j] > numeros[j+1])
             {
+                intercambio = true
                 val temp = numeros[j]
                 numeros[j] = numeros[j+1]
                 numeros[j+1] = temp
             }
         }
+
+        if(!intercambio)
+        {
+            return
+        }
     }
+}
+
+fun insertionSort(numeros : Array<Int>, n : Int)
+{
+    //TODO
+}
+
+fun selectionSort(numeros : Array<Int>, n : Int)
+{
+    //TODO
+}
+
+fun quickSort(numeros : Array<Int>, n : Int)
+{
+    //TODO
+}
+
+fun mergeSort(numeros : Array<Int>, n : Int)
+{
+    //TODO
 }
 
 fun imprimirDatos(numeros : Array<Int>, n : Int)
