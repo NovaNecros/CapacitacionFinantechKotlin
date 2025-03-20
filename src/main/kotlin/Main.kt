@@ -64,9 +64,40 @@ fun selectionSort(numeros : Array<Int>, n : Int)
     }
 }
 
+//esquema de partición de Hoare
+fun particion(numeros : Array<Int>, lo : Int, hi : Int) : Int
+{
+    val pivote : Int = numeros[lo]
+    var i : Int = lo - 1
+    var j : Int = hi + 1
+
+    while(true)
+    {
+        do { ++i } while(numeros[i] < pivote)
+        do { --j } while(numeros[j] > pivote)
+        if(i >= j) return j
+
+        val temp : Int = numeros[j]
+        numeros[j] = numeros[i]
+        numeros[i] = temp
+    }
+}
+
+//lamada recursiva a quicksort
+fun quickSort(numeros: Array<Int>, lo : Int, hi : Int)
+{
+    if(lo>=0 && hi>=0 && hi>lo)
+    {
+        val p : Int = particion(numeros, lo, hi)
+        quickSort(numeros, lo, p)
+        quickSort(numeros, p+1, hi)
+    }
+}
+
+//llamada sencilla a quicksort
 fun quickSort(numeros : Array<Int>, n : Int)
 {
-    //TODO
+    quickSort(numeros, 0, n-1)
 }
 
 fun mergeSort(numeros : Array<Int>, n : Int)
@@ -87,16 +118,32 @@ fun main(args : Array<String>)
 {
     val numeros : Array<Int> = arrayOf(9,6,7,2,5,3)
     val tam : Int = numeros.size
-    val opcion : Int = 1
+    val opcion : Int = 4
 
     imprimirDatos(numeros, tam)
-    println("Ordenado:")
 
     when(opcion)
     {
-        1 -> bubbleSort(numeros, tam)
-        2 -> insertionSort(numeros, tam)
-        3 -> selectionSort(numeros, tam)
+        1 -> {
+                println("BubbleSort:")
+                bubbleSort(numeros, tam)
+             }
+        2 -> {
+                println("InsertionSort:")
+                insertionSort(numeros, tam)
+             }
+        3 -> {
+                println("SelectionSort:")
+                selectionSort(numeros, tam)
+             }
+        4 -> {
+                println("QuickSort:")
+                quickSort(numeros, tam)
+             }
+        5 -> {
+                println("MergeSort:")
+                mergeSort(numeros, tam)
+             }
         else -> println(":(")
     }
 
