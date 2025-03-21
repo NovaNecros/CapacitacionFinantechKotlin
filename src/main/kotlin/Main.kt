@@ -11,23 +11,60 @@ fun areaTriangulo(lado1 : Double, lado2 : Double, lado3 : Double) : Double
 
 }
 
-fun centiToFarenheit(c : Double) : Double = c*1.8 + 32
-fun centiToKelvin(c : Double) : Double = c + 273.16
-fun centiToRankine(c : Double) : Double = 1.8*c + 491.67
-fun farenheitToCelsius(f : Double) : Double = 0.0
-fun farenheitToKelvin(f : Double) : Double = 0.0
+fun celsiusToFarenheit(c : Double) : Double = c*1.8 + 32
+fun celsiusToKelvin(c : Double) : Double = c + 273.16
+fun celsiusToRankine(c : Double) : Double = 1.8*c + 491.67
+
+fun farenheitToCelsius(f : Double) : Double = (f-32)/1.8
+fun farenheitToKelvin(f : Double) : Double = (f+459.67)/1.8
 fun farenheitToRankine(f : Double) : Double = f + 459.67
-fun kelvinToCelsius(k : Double) : Double = k - 273.15
-fun kelvinToFarenheit(k : Double) : Double = 0.0
-fun kelvinToRankine(k : Double) : Double = 0.0
-fun rankineToCelsius(r : Double) : Double = 0.9
-fun rankineToFarenheit(r : Double) : Double = r - 459-67
-fun rankineToKelvin(r : Double) : Double = 0.0
+
+fun kelvinToCelsius(k : Double) : Double = k - 273.16
+fun kelvinToFarenheit(k : Double) : Double = (k-273.16)*1.8 + 32
+fun kelvinToRankine(k : Double) : Double = 1.8*k
+
+fun rankineToCelsius(r : Double) : Double = (r-491.67)/1.8
+fun rankineToFarenheit(r : Double) : Double = r - 459.67
+fun rankineToKelvin(r : Double) : Double = r/1.8
 
 
 fun main()
 {
-    println("Volumen de cubo: ${volumenCubo(5.0)}")
-    println("Area de Triángulo: ${areaTriangulo(4.0,5.0)}")
-    println("Temperatura en Farenheit: ${centiToFarenheit(4.0)}")
+    val lado : Double = 5.0
+    println("Lado del cubo: ${lado}")
+    println("Volumen de cubo: ${volumenCubo(lado)}")
+    println("Area de cubo: ${areaCubo(lado)}\n\n")
+
+
+    val base : Double = 3.0
+    val altura : Double = 4.0
+    val hipotenusa : Double = 5.0
+    println("Lados: ${base}, ${altura}, ${hipotenusa} (es triángulo rectángulo)")
+    println("Área (b*h/2): ${areaTriangulo(4.0,5.0)}")
+    println("Área (fórmula de Heron): ${areaTriangulo(base, altura, hipotenusa)}\n\n")
+
+
+    val c : Double = 21.0
+    println("Temperatura: ${c} °C")
+    println("${celsiusToFarenheit(c)} °F")
+    println("${celsiusToKelvin(c)} K")
+    println("${celsiusToRankine(c)} °R\n")
+
+    val f : Double = 21.0
+    println("Temperatura: ${f} °F")
+    println("${farenheitToCelsius(f)} °C")
+    println("${farenheitToKelvin(f)} K")
+    println("${farenheitToRankine(f)} °R\n")
+
+    val k : Double = 21.0
+    println("Temperatura: ${k} K")
+    println("${kelvinToCelsius(k)} °C")
+    println("${kelvinToFarenheit(k)} °F")
+    println("${kelvinToRankine(f)} °R\n")
+
+    val r : Double = 21.0
+    println("Temperatura: ${r} °R")
+    println("${rankineToCelsius(r)} °C")
+    println("${rankineToFarenheit(r)} °F")
+    println("${rankineToKelvin(r)} K")
 }
