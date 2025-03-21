@@ -100,19 +100,69 @@ fun quickSort(numeros : Array<Int>, n : Int)
     quickSort(numeros, 0, n-1)
 }
 
+//esquema top-down
 fun merge(numeros : Array<Int>, ini : Int, mid : Int, fin : Int)
 {
-    //TODO
+    val n1 : Int = mid - ini + 1
+    val n2 : Int = fin - mid
+    var ind : Int = ini
+    var ind1 : Int = 0
+    var ind2 : Int = 0
+    var L : Array<Int> = Array(n1) {0}
+    var R : Array<Int> = Array(n2) {0}
+
+    for(i in 0 until n1)
+    {
+        L[i] = numeros[ini + i]
+    }
+    for(i in 0 until n2)
+    {
+        R[i] = numeros[mid + 1 + i]
+    }
+
+    while(ind1<n1 && ind2<n2)
+    {
+        if(L[ind1] <= R[ind2])
+        {
+            numeros[ind] = L[ind1]
+            ++ind1
+        }
+        else
+        {
+            numeros[ind] = R[ind2]
+            ++ind2
+        }
+        ++ind
+    }
+
+    while(ind1<n1)
+    {
+        numeros[ind] = L[ind1]
+        ++ind
+        ++ind1
+    }
+
+    while(ind2<n2)
+    {
+        numeros[ind] = R[ind2]
+        ++ind
+        ++ind2
+    }
 }
 
+//llamada recursiva a mergesort
 fun mergeSort(numeros : Array<Int>, ini : Int, fin : Int)
 {
     val mid : Int = ini + (fin - ini) / 2
-    mergeSort(numeros, ini, mid)
-    mergeSort(numeros, mid+1, fin)
-    merge(numeros, ini, mid, fin)
+    if(ini<fin)
+    {
+        mergeSort(numeros, ini, mid)
+        mergeSort(numeros, mid+1, fin)
+        merge(numeros, ini, mid, fin)
+    }
 }
 
+//llamada sencilla a mergesort
 fun mergeSort(numeros : Array<Int>, n : Int)
 {
     mergeSort(numeros, 0, n-1)
@@ -131,11 +181,11 @@ fun main(args : Array<String>)
 {
     val numeros : Array<Int> = arrayOf(9,6,7,2,5,3)
     val tam : Int = numeros.size
-    val opcion : Int = 4
+    val opcion : Int = 5
 
     imprimirDatos(numeros, tam)
 
-    when(opcion)
+    when(opcion) //para elegir fácilmente cuál algoritmo probar
     {
         1 -> {
                 println("BubbleSort:")
