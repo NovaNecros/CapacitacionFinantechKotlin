@@ -1,7 +1,9 @@
 fun volumenCubo(lado : Double) : Double = lado*lado*lado
 fun areaCubo(lado : Double) : Double = 6*lado*lado
 
+//Si se conocen la base y la altura
 fun areaTriangulo(base : Double, altura : Double) : Double = 0.5*base*altura
+//Si se conocen los tres lados (fórmula de Heron)
 fun areaTriangulo(lado1 : Double, lado2 : Double, lado3 : Double) : Double
 {
     val S : Double = 0.5*(lado1 + lado2 + lado3)
