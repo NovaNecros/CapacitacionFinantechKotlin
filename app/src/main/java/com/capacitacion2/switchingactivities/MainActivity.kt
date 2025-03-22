@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.Button
 import android.widget.Toast
+import android.view.View
 
 class MainActivity : AppCompatActivity()
 {
@@ -26,9 +27,9 @@ class MainActivity : AppCompatActivity()
         }
 
         val btnId = findViewById<Button>(R.id.btn_id)
-        btnId.setOnClickListener(
+        btnId.setOnClickListener(View.OnClickListener
         {
-            val intent = Intent(applicationContext, SecondActivity::class.java)
+            intent = Intent(applicationContext, SecondActivity::class.java)
             startActivity(intent)
         })
     }

@@ -3,21 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/second"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/moradopastel"
-    tools:context=".MainActivity">
+    android:background="@color/azulpastel"
+    tools:context=".SecondActivity">
 
     <TextView
-        android:id="@+id/texto1"
-        android:visibility="visible"
+        android:id="@+id/texto2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/act1"
+        android:text="@string/act2"
         android:textSize="60sp"
         android:textStyle="bold"
-        android:textColor="@color/brat"
+        android:textColor="@color/naranjafuerte"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -36,17 +36,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@drawable/johto" />
+        app:srcCompat="@drawable/paldea" />
 
     <Button
-        android:id="@+id/btn_id"
-        android:visibility="visible"
+        android:id="@+id/btn_id2"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="@string/swact1_to_2"
+        android:text="@string/swact2_to_1"
         android:textSize="34sp"
         android:textStyle="bold"
-        android:backgroundTint="@color/brat"
+        android:visibility="visible"
+        android:backgroundTint="@color/naranjafuerte"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
