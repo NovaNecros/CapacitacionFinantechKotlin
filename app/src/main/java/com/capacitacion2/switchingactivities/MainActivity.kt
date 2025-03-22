@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity()
             insets
         }
 
+        //Este botón te manda a la segunda actividad
         val btnId = findViewById<Button>(R.id.btn_id)
         btnId.setOnClickListener(View.OnClickListener
         {
