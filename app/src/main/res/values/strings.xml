@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DataBetweenActivities</string>
     <string name="act1">Activity 1</string>
+    <string name="act2">Activity 2</string>
     <string name="etext_hint">Escribe algo :)</string>
     <string name="swact1_to_2">To Act 2</string>"
+    <string name="swact2_to_1">To Act 1</string>
+
 </resources>

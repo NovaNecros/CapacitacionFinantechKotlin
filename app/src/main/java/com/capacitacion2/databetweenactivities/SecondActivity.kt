@@ -7,8 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 import android.content.Intent
+import android.widget.TextView
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 
 class SecondActivity : AppCompatActivity()
@@ -17,23 +17,24 @@ class SecondActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main))
+        setContentView(R.layout.activity_second)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.second))
         {
-                v, insets ->
+            v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val eText = findViewById<EditText>(R.id.eText)
-        val btn1 = findViewById<Button>(R.id.btnAct1)
+        var texto = findViewById<TextView>(R.id.texto2)
+        val bundle = intent.extras
+        val data = bundle?.getString("userdata")
+        texto.text = data.toString()
 
-        btn1.setOnClickListener()
+        val btn2 = findViewById<Button>(R.id.btnAct2)
+        btn2.setOnClickListener()
         {
-            var data = eText.text.toString()
             val intent = Intent(applicationContext, SecondActivity::class.java)
-            intent.putExtra("userdata", data)
             startActivity(intent)
         }
     }
