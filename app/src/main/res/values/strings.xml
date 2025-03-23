@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Preferences</string>
+    <string name="name">Nombre:</string>
+    <string name="name_hint">Escribe tu nombre</string>
+    <string name="phone">Teléfono:</string>
+    <string name="phone_hint">Escribe tu teléfono</string>
+    <string name="save">Guardar \n Información</string>
+</resources>
