@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity()
         val btnSave = findViewById<Button>(R.id.btn_save)
         val etName = findViewById<EditText>(R.id.et_name)
         val etPhone = findViewById<EditText>(R.id.et_phone)
-        val tvName = findViewById<TextView>(R.id.tv_name)
-        val tvPhone = findViewById<TextView>(R.id.tv_phone)
+        val tvName = findViewById<TextView>(R.id.saved_name)
+        val tvPhone = findViewById<TextView>(R.id.saved_phone)
         var userInformation = getSharedPreferences("userPrefs", MODE_PRIVATE)
 
         btnSave.setOnClickListener(View.OnClickListener
@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity()
             prefEditor.putString("name", etName.text.toString())
             prefEditor.putString("phone", etPhone.text.toString())
             prefEditor.apply()
+
+            var un : String? = userInformation.getString("name", "XXX")
+            var up : String? = userInformation.getString("phone", "XXX")
+            tvName.text = un
+            tvPhone.text = up
         })
     }
 }
