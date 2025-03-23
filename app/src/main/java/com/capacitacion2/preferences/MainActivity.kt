@@ -51,35 +51,45 @@ class MainActivity : AppCompatActivity()
 
         btnSave.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener
         { buttonView, isChecked ->
-            if (isChecked)
+            if(isChecked)
             {
-                val prefEditor : SharedPreferences.Editor = userInformation.edit()
-                prefEditor.putString("name", etName.text.toString())
-                prefEditor.putString("phone", etPhone.text.toString())
-                prefEditor.apply()
+                //valida que el usuario introdujo los datos correctamente
+                if(etName.text.toString() != "" && etPhone.text.toString() != "") {
+                    val prefEditor: SharedPreferences.Editor = userInformation.edit()
+                    prefEditor.putString("name", etName.text.toString())
+                    prefEditor.putString("phone", etPhone.text.toString())
+                    prefEditor.apply()
 
-                var un : String? = userInformation.getString("name", "XXX")
-                var up : String? = userInformation.getString("phone", "XXX")
+                    var un : String? = userInformation.getString("name", "XXX")
+                    var up : String? = userInformation.getString("phone", "XXX")
 
-                tvSavedName.text = un
-                tvSavedPhone.text = up
+                    tvSavedName.text = un
+                    tvSavedPhone.text = up
 
-                tvName.visibility = View.INVISIBLE
-                tvPhone.visibility = View.INVISIBLE
-                etName.visibility = View.INVISIBLE
-                etPhone.visibility = View.INVISIBLE
-                tvSavedName.visibility = View.VISIBLE
-                tvSavedPhone.visibility = View.VISIBLE
+                    tvName.visibility = View.INVISIBLE
+                    tvPhone.visibility = View.INVISIBLE
+                    etName.visibility = View.INVISIBLE
+                    etPhone.visibility = View.INVISIBLE
+                    tvSavedName.visibility = View.VISIBLE
+                    tvSavedPhone.visibility = View.VISIBLE
 
-                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
-                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
-                showToast(texto, col)
+                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
+                    showToast(texto, col)
+
+                    etName.setText("") //borra los datos del editText después de guardarlos
+                    etPhone.setText("")
+                }
+                else //si falto algun dato regresa el togglebutton a su estado inicial
+                {
+                    val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
+                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
+                    showToast(texto, col)
+                    btnSave.isChecked = false
+                }
             }
             else
             {
-                etName.setText("")
-                etPhone.setText("")
-
                 tvName.visibility = View.VISIBLE
                 tvPhone.visibility = View.VISIBLE
                 etName.visibility = View.VISIBLE
@@ -94,6 +104,7 @@ class MainActivity : AppCompatActivity()
         })
     }
 
+    //muestra un toast personalizado
     private fun showToast(texto: String, color: Int)
     {
         val inflater = layoutInflater
@@ -106,8 +117,9 @@ class MainActivity : AppCompatActivity()
         burbuja.cornerRadius = 25f
         layout.background = burbuja
         contenido.text = texto
+        toast.view = layout
         toast.duration = Toast.LENGTH_SHORT
-        toast.setGravity(Gravity.BOTTOM, 0, 0)
+        toast.setGravity(Gravity.BOTTOM or Gravity.END, 50, 0)
         toast.show()
     }
 }
