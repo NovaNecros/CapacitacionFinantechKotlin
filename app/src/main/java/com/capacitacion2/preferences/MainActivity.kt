@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.widget.TextView
 import android.widget.EditText
-import android.widget.Button
+import android.widget.ToggleButton
+import android.widget.CompoundButton
 import android.view.View
+import android.widget.Toast
+import android.graphics.drawable.GradientDrawable
+import android.view.Gravity
+import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity()
@@ -28,24 +32,82 @@ class MainActivity : AppCompatActivity()
             insets
         }
 
-        val btnSave = findViewById<Button>(R.id.btn_save)
+        val btnSave = findViewById<ToggleButton>(R.id.btn_save)
+        val tvName = findViewById<TextView>(R.id.tv_name)
+        val tvPhone = findViewById<TextView>(R.id.tv_phone)
         val etName = findViewById<EditText>(R.id.et_name)
         val etPhone = findViewById<EditText>(R.id.et_phone)
-        val tvName = findViewById<TextView>(R.id.saved_name)
-        val tvPhone = findViewById<TextView>(R.id.saved_phone)
+        val tvSavedName = findViewById<TextView>(R.id.saved_name)
+        val tvSavedPhone = findViewById<TextView>(R.id.saved_phone)
         var userInformation = getSharedPreferences("userPrefs", MODE_PRIVATE)
 
-        btnSave.setOnClickListener(View.OnClickListener
-        {
-            val prefEditor : SharedPreferences.Editor = userInformation.edit()
-            prefEditor.putString("name", etName.text.toString())
-            prefEditor.putString("phone", etPhone.text.toString())
-            prefEditor.apply()
+        btnSave.visibility = View.VISIBLE
+        tvName.visibility = View.VISIBLE
+        tvPhone.visibility = View.VISIBLE
+        etName.visibility = View.VISIBLE
+        etPhone.visibility = View.VISIBLE
+        tvSavedName.visibility = View.INVISIBLE
+        tvSavedPhone.visibility = View.INVISIBLE
 
-            var un : String? = userInformation.getString("name", "XXX")
-            var up : String? = userInformation.getString("phone", "XXX")
-            tvName.text = un
-            tvPhone.text = up
+        btnSave.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener
+        { buttonView, isChecked ->
+            if (isChecked)
+            {
+                val prefEditor : SharedPreferences.Editor = userInformation.edit()
+                prefEditor.putString("name", etName.text.toString())
+                prefEditor.putString("phone", etPhone.text.toString())
+                prefEditor.apply()
+
+                var un : String? = userInformation.getString("name", "XXX")
+                var up : String? = userInformation.getString("phone", "XXX")
+
+                tvSavedName.text = un
+                tvSavedPhone.text = up
+
+                tvName.visibility = View.INVISIBLE
+                tvPhone.visibility = View.INVISIBLE
+                etName.visibility = View.INVISIBLE
+                etPhone.visibility = View.INVISIBLE
+                tvSavedName.visibility = View.VISIBLE
+                tvSavedPhone.visibility = View.VISIBLE
+
+                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
+                showToast(texto, col)
+            }
+            else
+            {
+                etName.setText("")
+                etPhone.setText("")
+
+                tvName.visibility = View.VISIBLE
+                tvPhone.visibility = View.VISIBLE
+                etName.visibility = View.VISIBLE
+                etPhone.visibility = View.VISIBLE
+                tvSavedName.visibility = View.INVISIBLE
+                tvSavedPhone.visibility = View.INVISIBLE
+
+                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_borrado)
+                showToast(texto, col)
+            }
         })
+    }
+
+    private fun showToast(texto: String, color: Int)
+    {
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast, findViewById(R.id.main), false)
+        val toast = Toast(applicationContext)
+        val contenido = layout.findViewById<TextView>(R.id.textoToast)
+        val burbuja = GradientDrawable()
+
+        burbuja.setColor(color)
+        burbuja.cornerRadius = 25f
+        layout.background = burbuja
+        contenido.text = texto
+        toast.duration = Toast.LENGTH_SHORT
+        toast.setGravity(Gravity.BOTTOM, 0, 0)
+        toast.show()
     }
 }

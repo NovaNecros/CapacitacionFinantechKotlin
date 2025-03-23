@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintHorizontal_bias="0.85"/>
+        app:layout_constraintHorizontal_bias="0.9"/>
 
     <TextView
         android:id="@+id/tv_phone"
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintHorizontal_bias="0.075"/>
+        app:layout_constraintHorizontal_bias="0.1"/>
 
     <EditText
         android:id="@+id/et_phone"
@@ -73,15 +73,18 @@
         app:layout_constraintVertical_bias="0.3"
         app:layout_constraintHorizontal_bias="0.9"/>
 
-    <Button
+    <ToggleButton
         android:id="@+id/btn_save"
         android:visibility="visible"
         android:layout_width="250dp"
         android:layout_height="150dp"
-        android:text="@string/save"
+        android:textOff="@string/save"
+        android:textOn="@string/reset"
         android:textStyle="bold"
         android:textSize="30sp"
-        android:backgroundTint="@color/moradofuerte"
+        android:textColor="@color/white"
+        android:background="@drawable/tb_bg"
+        android:backgroundTint="@drawable/tb_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.85"
-        app:layout_constraintHorizontal_bias="0.075"/>
+        app:layout_constraintHorizontal_bias="0.1"/>
 
     <TextView
         android:id="@+id/saved_phone"
@@ -117,7 +120,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9"
-        app:layout_constraintHorizontal_bias="0.075"/>
+        app:layout_constraintHorizontal_bias="0.1"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
