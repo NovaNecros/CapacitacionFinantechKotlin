@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/azulpastel"
+    android:background="@color/rosapastel"
     tools:context=".MainActivity">
 
     <TextView
@@ -14,32 +14,35 @@
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name"
+        android:text="@string/titulo"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="34sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintHorizontal_bias="0.1"/>
+        app:layout_constraintVertical_bias="0.225"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
     <EditText
         android:id="@+id/et_name"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/name_hint"
+        android:hint="@string/et_hint"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:ems="9"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gris"
+        android:ems="11"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintHorizontal_bias="0.9"/>
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
 
     <ToggleButton
@@ -58,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintVertical_bias="0.85"
         app:layout_constraintHorizontal_bias="0.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

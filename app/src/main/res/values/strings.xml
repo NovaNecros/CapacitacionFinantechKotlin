@@ -1,13 +1,11 @@
 <resources>
     <string name="app_name">Preferences</string>
-    <string name="name">Nombre:</string>
-    <string name="name_hint">Escribe tu nombre</string>
-    <string name="phone">Teléfono:</string>
-    <string name="phone_hint">Escribe tu teléfono</string>
+    <string name="filename">test_file</string>
+    <string name="titulo">Internal Storage 101</string>
+    <string name="et_hint">Escribe algo aquí</string>
     <string name="save">Guardar\nInformación</string>
-    <string name="reset">Borrar\nInformación</string>
+    <string name="reset">Regresar</string>
     <string name="default_toast">olivdaste cambiar el texto :b</string>"
     <string name="toast_guardado">Información guardada\nexitosamente!</string>
-    <string name="toast_borrado">Información eliminada\nexitosamente!</string>
     <string name="toast_vacio">>:(</string>"
 </resources>

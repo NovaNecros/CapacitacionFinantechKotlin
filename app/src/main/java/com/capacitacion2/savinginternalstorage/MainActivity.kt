@@ -17,7 +17,10 @@ import android.view.Gravity
 import androidx.core.content.ContextCompat
 
 import android.content.Context
+import android.widget.FrameLayout
+import androidx.core.view.setPadding
 import java.io.FileOutputStream
+import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity()
@@ -46,14 +49,23 @@ class MainActivity : AppCompatActivity()
         { buttonView, isChecked ->
             if(isChecked)
             {
-                if(etName.text.toString() != "")
+                if(!etName.text.toString().isEmpty())
                 {
                     tvName.visibility = View.INVISIBLE
                     etName.visibility = View.INVISIBLE
 
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                    val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
+                    val dataToSave : String = etName.text.toString()
+
+                    val fos : FileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE)
+                    fos.write(dataToSave.toByteArray())
+                    fos.close()
+
+                    val view = findViewById<View>(android.R.id.content)
                     val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
-                    showToast(texto, col)
+                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                    showSnackbar(view, texto, col)
+                    //showToast(texto, col)
 
                     etName.setText("")
                 }
@@ -61,7 +73,7 @@ class MainActivity : AppCompatActivity()
                 {
                     val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
                     val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
-                    showToast(texto, col)
+                    //showToast(texto, col)
                     btnSave.isChecked = false
                 }
             }
@@ -69,12 +81,26 @@ class MainActivity : AppCompatActivity()
             {
                 tvName.visibility = View.VISIBLE
                 etName.visibility = View.VISIBLE
-
-                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
-                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_borrado)
-                showToast(texto, col)
             }
         })
+    }
+
+    private fun showSnackbar(view : View, texto : String, col : Int)
+    {
+        val snackbar = Snackbar.make(view, texto, Snackbar.LENGTH_LONG)
+        val msj = snackbar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+
+        msj.textSize = 20f
+        msj.gravity = Gravity.CENTER
+
+        snackbar.setBackgroundTint(col)
+        snackbar.view.setPadding(0, 0, 0, 0)
+        snackbar.view.layoutParams = (snackbar.view.layoutParams as FrameLayout.LayoutParams).apply()
+        {
+            gravity = Gravity.TOP
+        }
+
+        snackbar.show()
     }
 
     //muestra un toast personalizado
@@ -92,7 +118,7 @@ class MainActivity : AppCompatActivity()
         contenido.text = texto
         toast.view = layout
         toast.duration = Toast.LENGTH_SHORT
-        toast.setGravity(Gravity.BOTTOM or Gravity.END, 50, 0)
+        toast.setGravity(Gravity.TOP, 0, 200)
         toast.show()
     }
 }
