@@ -1,4 +1,4 @@
-package com.capacitacion2.preferences
+package com.capacitacion2.savinginternalstorage
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity()
                     etName.setText("") //borra los datos del editText después de guardarlos
                     etPhone.setText("")
                 }
-                else //si falto algun dato regresa el togglebutton a su estado inicial
+                else //si faltó algun dato regresa el togglebutton a su estado inicial
                 {
                     val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
                     val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)

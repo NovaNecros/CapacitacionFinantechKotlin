@@ -1,4 +1,4 @@
-package com.capacitacion2.preferences
+package com.capacitacion2.savinginternalstorage
 
 import org.junit.Test
 

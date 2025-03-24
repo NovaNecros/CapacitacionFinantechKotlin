@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.capacitacion2.preferences"
+    namespace = "com.capacitacion2.savinginternalstorage"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.capacitacion2.preferences"
+        applicationId = "com.capacitacion2.savinginternalstorage"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

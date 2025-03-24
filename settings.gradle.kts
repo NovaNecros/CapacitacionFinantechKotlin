@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Preferences"
+rootProject.name = "Saving Internal Storage"
 include(":app")
  

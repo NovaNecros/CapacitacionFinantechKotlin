@@ -1,4 +1,4 @@
-package com.capacitacion2.preferences
+package com.capacitacion2.savinginternalstorage
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.capacitacion2.preferences", appContext.packageName)
+        assertEquals("com.capacitacion2.savinginternalstorage", appContext.packageName)
     }
 }
