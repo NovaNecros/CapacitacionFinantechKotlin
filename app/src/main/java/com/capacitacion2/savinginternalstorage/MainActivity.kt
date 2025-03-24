@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-import android.content.SharedPreferences
 import android.widget.TextView
 import android.widget.EditText
 import android.widget.ToggleButton
@@ -16,6 +15,9 @@ import android.widget.Toast
 import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import androidx.core.content.ContextCompat
+
+import android.content.Context
+import java.io.FileOutputStream
 
 
 class MainActivity : AppCompatActivity()
@@ -34,53 +36,28 @@ class MainActivity : AppCompatActivity()
 
         val btnSave = findViewById<ToggleButton>(R.id.btn_save)
         val tvName = findViewById<TextView>(R.id.tv_name)
-        val tvPhone = findViewById<TextView>(R.id.tv_phone)
         val etName = findViewById<EditText>(R.id.et_name)
-        val etPhone = findViewById<EditText>(R.id.et_phone)
-        val tvSavedName = findViewById<TextView>(R.id.saved_name)
-        val tvSavedPhone = findViewById<TextView>(R.id.saved_phone)
-        var userInformation = getSharedPreferences("userPrefs", MODE_PRIVATE)
 
         btnSave.visibility = View.VISIBLE
         tvName.visibility = View.VISIBLE
-        tvPhone.visibility = View.VISIBLE
         etName.visibility = View.VISIBLE
-        etPhone.visibility = View.VISIBLE
-        tvSavedName.visibility = View.INVISIBLE
-        tvSavedPhone.visibility = View.INVISIBLE
 
         btnSave.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener
         { buttonView, isChecked ->
             if(isChecked)
             {
-                //valida que el usuario introdujo los datos correctamente
-                if(etName.text.toString() != "" && etPhone.text.toString() != "") {
-                    val prefEditor: SharedPreferences.Editor = userInformation.edit()
-                    prefEditor.putString("name", etName.text.toString())
-                    prefEditor.putString("phone", etPhone.text.toString())
-                    prefEditor.apply()
-
-                    var un : String? = userInformation.getString("name", "XXX")
-                    var up : String? = userInformation.getString("phone", "XXX")
-
-                    tvSavedName.text = un
-                    tvSavedPhone.text = up
-
+                if(etName.text.toString() != "")
+                {
                     tvName.visibility = View.INVISIBLE
-                    tvPhone.visibility = View.INVISIBLE
                     etName.visibility = View.INVISIBLE
-                    etPhone.visibility = View.INVISIBLE
-                    tvSavedName.visibility = View.VISIBLE
-                    tvSavedPhone.visibility = View.VISIBLE
 
                     val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
                     val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
                     showToast(texto, col)
 
-                    etName.setText("") //borra los datos del editText después de guardarlos
-                    etPhone.setText("")
+                    etName.setText("")
                 }
-                else //si faltó algun dato regresa el togglebutton a su estado inicial
+                else
                 {
                     val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
                     val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
@@ -91,11 +68,7 @@ class MainActivity : AppCompatActivity()
             else
             {
                 tvName.visibility = View.VISIBLE
-                tvPhone.visibility = View.VISIBLE
                 etName.visibility = View.VISIBLE
-                etPhone.visibility = View.VISIBLE
-                tvSavedName.visibility = View.INVISIBLE
-                tvSavedPhone.visibility = View.INVISIBLE
 
                 val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
                 val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_borrado)
@@ -105,7 +78,7 @@ class MainActivity : AppCompatActivity()
     }
 
     //muestra un toast personalizado
-    private fun showToast(texto: String, color: Int)
+    private fun showToast(texto : String, color : Int)
     {
         val inflater = layoutInflater
         val layout = inflater.inflate(R.layout.custom_toast, findViewById(R.id.main), false)
