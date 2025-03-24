@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="true"
-        android:color="@color/naranja">
+        android:color="@color/dorado">
         <shape android:shape="rectangle">
             <corners android:radius="60dp"/>
             <stroke
@@ -19,7 +19,7 @@
 
     <item
         android:state_checked="false"
-        android:color="@color/verdebosque">
+        android:color="@color/verdeclaro">
         <shape android:shape="rectangle">
             <corners android:radius="60dp"/>
             <stroke
