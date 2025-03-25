@@ -9,10 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 
 import android.widget.TextView
 import android.widget.ImageView
-import android.widget.EditText
 import android.widget.Button
-import android.widget.ToggleButton
-import android.widget.CompoundButton
 import android.view.View
 import android.widget.Toast
 import android.graphics.drawable.GradientDrawable
@@ -22,7 +19,6 @@ import androidx.core.content.ContextCompat
 import android.widget.FrameLayout
 import com.google.android.material.snackbar.Snackbar
 
-import java.io.FileOutputStream
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -54,9 +50,8 @@ class SecondActivity : AppCompatActivity()
             var input:BufferedReader? = null
 
             input = BufferedReader(InputStreamReader(openFileInput(getString(R.string.filename))))
-            var line : String
             val builder = StringBuilder()
-            line = input.readLine()
+            val line = input.readLine()
             builder.append(line+eol)
             textoGuardado.text = builder.toString()
 
@@ -65,6 +60,7 @@ class SecondActivity : AppCompatActivity()
             val color : Int = ContextCompat.getColor(getApplicationContext(), R.color.brat)
             showSnackbar(view, texto, color)
 
+            btnLoad.visibility = View.INVISIBLE
             textoGuardado.visibility = View.VISIBLE
             gatoElegante.visibility = View.VISIBLE
         })
