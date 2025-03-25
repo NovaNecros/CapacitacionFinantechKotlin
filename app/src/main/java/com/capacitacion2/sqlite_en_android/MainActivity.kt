@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity()
     var fecha = findViewById<CalendarView>(R.id.fecha)
     var listaPersonitas = findViewById<ListView>(R.id.lista_personitas)
 
-    override fun onCreate(savedInstanceState: Bundle?)
+    override fun onCreate(savedInstanceState : Bundle?)
     {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -53,12 +53,15 @@ class MainActivity : AppCompatActivity()
             var curDate: String = fecha.date.toString()
             var generos = arrayOf(masculino, femenino, nobinario)
 
-            for (genero in generos) {
-                if (genero.isChecked) {
+            for(genero in generos)
+            {
+                if (genero.isChecked)
+                {
                     generosUsuario.add(genero.text.toString())
                 }
             }
-            if (otroGenero.text.toString().isNotEmpty()) {
+            if(otroGenero.text.toString().isNotEmpty())
+            {
                 generosUsuario.add(otroGenero.text.toString())
             }
 
@@ -94,18 +97,28 @@ class MainActivity : AppCompatActivity()
 
     override fun onPause()
     {
+        dataManager.cerrar()
         super.onPause()
-        dataManager.guardarPersonitas()
     }
 
     override fun onResume()
     {
+        dataManager.abrir()
         super.onResume()
-        dataManager.leerPersonitas()
     }
 
     fun mostrarPersonitas()
     {
-
+        try
+        {
+            var personitas = dataManager.leerPersonitas()
+            var adaptador = ArrayAdapter<Personita>(applicationContext, android.R.layout.simple_list_item_1, personitas)
+            listaPersonitas.adapter = adaptador
+            listaPersonitas.setVerticalScrollBarEnabled(true)
+        }
+        catch(ex : Exception)
+        {
+            Toast.makeText(applicationContext, ex.message, Toast.LENGTH_LONG).show()
+        }
     }
 }
