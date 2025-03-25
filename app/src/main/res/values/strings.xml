@@ -7,7 +7,10 @@
     <string name="save">Guardar\nInformación</string>
     <string name="load">Cargar\nInformación</string>
     <string name="reset">Regresar</string>
-    <string name="default_toast">olivdaste cambiar el texto :b</string>"
+    <string name="sig">Continuar</string>
+    <string name="back">Volver</string>
+    <string name="default_toast">olivdaste cambiar el texto :b</string>
     <string name="toast_guardado">Información guardada\nexitosamente!</string>
-    <string name="toast_vacio">>:(</string>"
+    <string name="toast_cargado">Información cargada\nexitosamente!</string>
+    <string name="toast_vacio">>:(</string>
 </resources>
