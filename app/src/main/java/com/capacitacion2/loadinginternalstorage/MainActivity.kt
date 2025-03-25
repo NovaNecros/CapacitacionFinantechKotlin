@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 
 import android.widget.TextView
 import android.widget.EditText
+import android.widget.Button
 import android.widget.ToggleButton
 import android.widget.CompoundButton
 import android.view.View
@@ -16,16 +17,12 @@ import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import androidx.core.content.ContextCompat
 
-import android.content.Context
 import android.widget.FrameLayout
-import androidx.core.view.setPadding
 import com.google.android.material.snackbar.Snackbar
 
 import java.io.FileOutputStream
 import java.io.BufferedReader
-import java.io.InputStream
 import java.io.InputStreamReader
-import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity()
 {
@@ -42,11 +39,14 @@ class MainActivity : AppCompatActivity()
         }
 
         val btnSave = findViewById<ToggleButton>(R.id.btn_save)
-        val tvName = findViewById<TextView>(R.id.tv_name)
+        val btnLoad = findViewById<Button>(R.id.btn_load)
+        val titulo = findViewById<TextView>(R.id.titulo)
+        val textoGuardado = findViewById<TextView>(R.id.texto_guardado)
         val etName = findViewById<EditText>(R.id.et_name)
 
+        btnLoad.visibility = View.INVISIBLE
         btnSave.visibility = View.VISIBLE
-        tvName.visibility = View.VISIBLE
+        titulo.visibility = View.VISIBLE
         etName.visibility = View.VISIBLE
 
         btnSave.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity()
             {
                 if(!etName.text.toString().isEmpty())
                 {
-                    tvName.visibility = View.INVISIBLE
+                    titulo.visibility = View.INVISIBLE
                     etName.visibility = View.INVISIBLE
 
                     val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
@@ -84,9 +84,22 @@ class MainActivity : AppCompatActivity()
             }
             else
             {
-                tvName.visibility = View.VISIBLE
+                titulo.visibility = View.VISIBLE
                 etName.visibility = View.VISIBLE
             }
+        })
+
+        btnLoad.setOnClickListener(View.OnClickListener
+        { v ->
+            val eol : String = System.lineSeparator()
+            var input:BufferedReader? = null
+
+            input = BufferedReader(InputStreamReader(openFileInput(getString(R.string.filename))))
+            var line : String
+            val builder = StringBuilder()
+            line = input.readLine()
+            builder.append(line+eol)
+            textoGuardado.text = builder.toString()
         })
     }
 

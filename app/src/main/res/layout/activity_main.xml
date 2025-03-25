@@ -6,12 +6,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rosapastel"
+    android:background="@color/moradopastel"
     tools:context="com.capacitacion2.loadinginternalstorage.MainActivity">
 
     <TextView
-        android:id="@+id/tv_name"
-        android:visibility="visible"
+        android:id="@+id/titulo"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titulo"
@@ -25,9 +25,25 @@
         app:layout_constraintVertical_bias="0.225"
         app:layout_constraintHorizontal_bias="0.5"/>
 
+    <TextView
+        android:id="@+id/texto_guardado"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholdertext"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
     <EditText
         android:id="@+id/et_name"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/et_hint"
@@ -48,12 +64,13 @@
     <ToggleButton
         android:id="@+id/btn_save"
         android:visibility="visible"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         android:textOff="@string/save"
         android:textOn="@string/reset"
+        android:textAllCaps="false"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:background="@drawable/tb_bg"
         android:backgroundTint="@drawable/tb_bg"
@@ -61,7 +78,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85"
-        app:layout_constraintHorizontal_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.1"/>
+
+    <Button
+        android:id="@+id/btn_load"
+        android:visibility="visible"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:text="@string/load"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rositafosfo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.9"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
