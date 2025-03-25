@@ -1,5 +1,6 @@
 package com.capacitacion2.loadinginternalstorage
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,65 +40,13 @@ class SecondActivity : AppCompatActivity()
             insets
         }
 
-        val btnSave = findViewById<ToggleButton>(R.id.btn_save)
         val btnLoad = findViewById<Button>(R.id.btn_load)
-        val titulo = findViewById<TextView>(R.id.titulo)
+        val btnBack = findViewById<Button>(R.id.btn_back)
         val textoGuardado = findViewById<TextView>(R.id.texto_guardado)
-        val etName = findViewById<EditText>(R.id.et_name)
         val gatoElegante = findViewById<ImageView>(R.id.sirgato)
 
-        btnLoad.visibility = View.INVISIBLE
-        btnSave.visibility = View.VISIBLE
-        titulo.visibility = View.VISIBLE
         textoGuardado.visibility = View.INVISIBLE
-        etName.visibility = View.VISIBLE
         gatoElegante.visibility = View.INVISIBLE
-
-        btnSave.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener
-        { buttonView, isChecked ->
-            if(isChecked)
-            {
-                if(!etName.text.toString().isEmpty())
-                {
-                    btnLoad.visibility = View.VISIBLE
-                    titulo.visibility = View.INVISIBLE
-                    textoGuardado.visibility = View.VISIBLE
-                    etName.visibility = View.INVISIBLE
-                    gatoElegante.visibility = View.VISIBLE
-
-                    val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
-                    val dataToSave : String = etName.text.toString()
-
-                    val fos : FileOutputStream = openFileOutput(fileName, MODE_PRIVATE)
-                    fos.write(dataToSave.toByteArray())
-                    fos.close()
-
-                    val view = findViewById<View>(android.R.id.content)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
-                    showSnackbar(view, texto, col)
-                    //showToast(texto, col)
-
-                    etName.setText("")
-                }
-                else
-                {
-                    val view = findViewById<View>(android.R.id.content)
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
-                    showSnackbar(view, texto, col)
-                    btnSave.isChecked = false
-                }
-            }
-            else
-            {
-                btnLoad.visibility = View.INVISIBLE
-                titulo.visibility = View.VISIBLE
-                textoGuardado.visibility = View.INVISIBLE
-                etName.visibility = View.VISIBLE
-                gatoElegante.visibility = View.INVISIBLE
-            }
-        })
 
         btnLoad.setOnClickListener(View.OnClickListener
         { v ->
@@ -110,6 +59,21 @@ class SecondActivity : AppCompatActivity()
             line = input.readLine()
             builder.append(line+eol)
             textoGuardado.text = builder.toString()
+
+            val view = findViewById<View>(android.R.id.content)
+            val texto : String = getString(R.string.toast_cargado)
+            val color : Int = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+            showSnackbar(view, texto, color)
+
+            textoGuardado.visibility = View.VISIBLE
+            gatoElegante.visibility = View.VISIBLE
+        })
+
+        //regresa a pedir información al usuario
+        btnBack.setOnClickListener(View.OnClickListener
+        {
+            intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
         })
     }
 
@@ -128,7 +92,7 @@ class SecondActivity : AppCompatActivity()
         msj.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
 
         layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-        layoutParams.setMargins(0, 250, 0, 0)
+        layoutParams.setMargins(0, 200, 0, 0)
         layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT
         layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
         snackbar.view.layoutParams = layoutParams

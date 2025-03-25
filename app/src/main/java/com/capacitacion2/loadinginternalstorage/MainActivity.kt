@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity()
 
         val btnSave = findViewById<Button>(R.id.btn_save)
         val btnContinue = findViewById<Button>(R.id.btn_continue)
-        val titulo = findViewById<TextView>(R.id.titulo)
         val etName = findViewById<EditText>(R.id.et_name)
 
         btnContinue.visibility = View.INVISIBLE
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity()
                 //showToast(texto, col)
 
                 etName.text.clear()
+                btnContinue.visibility = View.VISIBLE
             }
             else
             {
@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity()
             }
         })
 
+        //continúa a la segunda actividad para mostrar la información guardada
         btnContinue.setOnClickListener(View.OnClickListener
         {
             intent = Intent(applicationContext, SecondActivity::class.java)

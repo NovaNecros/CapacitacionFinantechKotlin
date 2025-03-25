@@ -4,8 +4,8 @@
     <string name="titulo">Internal Storage 102</string>
     <string name="placeholdertext">No haz guardado nada</string>
     <string name="et_hint">Escribe algo aquí</string>
-    <string name="save">Guardar\nInformación</string>
-    <string name="load">Cargar\nInformación</string>
+    <string name="save">Guardar</string>
+    <string name="load">Cargar</string>
     <string name="reset">Regresar</string>
     <string name="sig">Continuar</string>
     <string name="back">Volver</string>
