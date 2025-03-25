@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="Preferences.app" target="21" />
+      <module name="Saving_Internal_Storage.app" target="21" />
       <module name="SavingInternalStorage.app" target="21" />
     </bytecodeTargetLevel>
   </component>

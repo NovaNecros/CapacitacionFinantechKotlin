@@ -1,4 +1,4 @@
-package com.capacitacion2.savinginternalstorage
+package com.capacitacion2.loadinginternalstorage
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -19,9 +19,13 @@ import androidx.core.content.ContextCompat
 import android.content.Context
 import android.widget.FrameLayout
 import androidx.core.view.setPadding
-import java.io.FileOutputStream
 import com.google.android.material.snackbar.Snackbar
 
+import java.io.FileOutputStream
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity()
 {
@@ -57,7 +61,7 @@ class MainActivity : AppCompatActivity()
                     val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
                     val dataToSave : String = etName.text.toString()
 
-                    val fos : FileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE)
+                    val fos : FileOutputStream = openFileOutput(fileName, MODE_PRIVATE)
                     fos.write(dataToSave.toByteArray())
                     fos.close()
 
