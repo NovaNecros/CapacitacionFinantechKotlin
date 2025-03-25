@@ -71,9 +71,10 @@ class MainActivity : AppCompatActivity()
                 }
                 else
                 {
+                    val view = findViewById<View>(android.R.id.content)
                     val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
                     val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
-                    //showToast(texto, col)
+                    showSnackbar(view, texto, col)
                     btnSave.isChecked = false
                 }
             }
@@ -89,16 +90,20 @@ class MainActivity : AppCompatActivity()
     {
         val snackbar = Snackbar.make(view, texto, Snackbar.LENGTH_LONG)
         val msj = snackbar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-
-        msj.textSize = 20f
-        msj.gravity = Gravity.CENTER
+        val layoutParams = snackbar.view.layoutParams as FrameLayout.LayoutParams
 
         snackbar.setBackgroundTint(col)
         snackbar.view.setPadding(0, 0, 0, 0)
-        snackbar.view.layoutParams = (snackbar.view.layoutParams as FrameLayout.LayoutParams).apply()
-        {
-            gravity = Gravity.TOP
-        }
+
+        msj.textSize = 24f
+        msj.gravity = Gravity.CENTER_HORIZONTAL
+        msj.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
+
+        layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+        layoutParams.setMargins(0, 250, 0, 0)
+        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT
+        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
+        snackbar.view.layoutParams = layoutParams
 
         snackbar.show()
     }
