@@ -9,14 +9,13 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
 import android.widget.EditText
 import android.widget.Button
-import android.widget.ToggleButton
-import android.widget.CompoundButton
 import android.view.View
 import android.widget.Toast
 import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import androidx.core.content.ContextCompat
 
+import android.content.Intent
 import android.widget.FrameLayout
 import com.google.android.material.snackbar.Snackbar
 
@@ -38,71 +37,50 @@ class MainActivity : AppCompatActivity()
             insets
         }
 
-        val btnSave = findViewById<ToggleButton>(R.id.btn_save)
-        val btnLoad = findViewById<Button>(R.id.btn_load)
+        val btnSave = findViewById<Button>(R.id.btn_save)
+        val btnContinue = findViewById<Button>(R.id.btn_continue)
         val titulo = findViewById<TextView>(R.id.titulo)
-        val textoGuardado = findViewById<TextView>(R.id.texto_guardado)
         val etName = findViewById<EditText>(R.id.et_name)
 
-        btnLoad.visibility = View.INVISIBLE
-        btnSave.visibility = View.VISIBLE
-        titulo.visibility = View.VISIBLE
-        etName.visibility = View.VISIBLE
+        btnContinue.visibility = View.INVISIBLE
+        etName.text.clear()
 
-        btnSave.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener
-        { buttonView, isChecked ->
-            if(isChecked)
+        btnSave.setOnClickListener(View.OnClickListener
+        { v->
+            if(!etName.text.toString().isEmpty())
             {
-                if(!etName.text.toString().isEmpty())
-                {
-                    titulo.visibility = View.INVISIBLE
-                    etName.visibility = View.INVISIBLE
+                val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
+                val dataToSave : String = etName.text.toString()
 
-                    val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
-                    val dataToSave : String = etName.text.toString()
+                val fos : FileOutputStream = openFileOutput(fileName, MODE_PRIVATE)
+                fos.write(dataToSave.toByteArray())
+                fos.close()
 
-                    val fos : FileOutputStream = openFileOutput(fileName, MODE_PRIVATE)
-                    fos.write(dataToSave.toByteArray())
-                    fos.close()
+                val view = findViewById<View>(android.R.id.content)
+                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
+                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                showSnackbar(view, texto, col)
+                //showToast(texto, col)
 
-                    val view = findViewById<View>(android.R.id.content)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
-                    showSnackbar(view, texto, col)
-                    //showToast(texto, col)
-
-                    etName.setText("")
-                }
-                else
-                {
-                    val view = findViewById<View>(android.R.id.content)
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
-                    showSnackbar(view, texto, col)
-                    btnSave.isChecked = false
-                }
+                etName.text.clear()
             }
             else
             {
-                titulo.visibility = View.VISIBLE
-                etName.visibility = View.VISIBLE
+                val view = findViewById<View>(android.R.id.content)
+                val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
+                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
+                showSnackbar(view, texto, col)
             }
         })
 
-        btnLoad.setOnClickListener(View.OnClickListener
-        { v ->
-            val eol : String = System.lineSeparator()
-            var input:BufferedReader? = null
-
-            input = BufferedReader(InputStreamReader(openFileInput(getString(R.string.filename))))
-            var line : String
-            val builder = StringBuilder()
-            line = input.readLine()
-            builder.append(line+eol)
-            textoGuardado.text = builder.toString()
+        btnContinue.setOnClickListener(View.OnClickListener
+        {
+            intent = Intent(applicationContext, SecondActivity::class.java)
+            startActivity(intent)
         })
     }
 
+    //snackbar como alternativa a los Toast personalizados
     private fun showSnackbar(view : View, texto : String, col : Int)
     {
         val snackbar = Snackbar.make(view, texto, Snackbar.LENGTH_LONG)
@@ -113,7 +91,7 @@ class MainActivity : AppCompatActivity()
         snackbar.view.setPadding(0, 0, 0, 0)
 
         msj.textSize = 24f
-        msj.gravity = Gravity.CENTER_HORIZONTAL
+        msj.gravity = Gravity.CENTER_HORIZONTAL //no sirve T___T
         msj.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
 
         layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL

@@ -3,53 +3,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/second"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/moradopastel"
-    tools:context="com.capacitacion2.loadinginternalstorage.MainActivity">
+    android:background="@color/white"
+    tools:context="com.capacitacion2.loadinginternalstorage.SecondActivity">
 
     <TextView
-        android:id="@+id/titulo"
+        android:id="@+id/texto_guardado"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titulo"
-        android:textStyle="bold"
-        android:textSize="34sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"
-        app:layout_constraintHorizontal_bias="0.5"/>
-
-    <EditText
-        android:id="@+id/et_name"
-        android:visibility="visible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/et_hint"
+        android:text="@string/placeholdertext"
         android:textStyle="bold"
         android:textSize="24sp"
         android:textColor="@color/black"
-        android:textColorHint="@color/gris"
-        android:ems="11"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_bias="0.25"
         app:layout_constraintHorizontal_bias="0.5"/>
 
+    <ImageView
+        android:id="@+id/sirgato"
+        android:visibility="visible"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:srcCompat="@drawable/catbubble2"/>
+
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_load"
         android:visibility="visible"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:text="@string/save"
+        android:text="@string/load"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/white"
@@ -62,15 +56,15 @@
         app:layout_constraintHorizontal_bias="0.1"/>
 
     <Button
-        android:id="@+id/btn_continue"
+        android:id="@+id/btn_back"
         android:visibility="visible"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:text="@string/sig"
+        android:text="@string/back"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:backgroundTint="@color/dorado"
+        android:backgroundTint="@color/rositafosfo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
