@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class DataManager(contexto : Context)
 {
     var dbHelper : SQLiteOpenHelper = DBHelper(contexto)
-    var baseDatos : SQLiteDatabase = DBHelper.writableDatabase
+    var baseDatos : SQLiteDatabase = dbHelper.writableDatabase
 
     fun abrir()
     {
@@ -59,7 +59,7 @@ class DataManager(contexto : Context)
 
         cursor.close()
 
-        return personitas.toTypedArray() : Array<Personita>
+        return personitas.toTypedArray()
     }
 
 

@@ -16,12 +16,10 @@ import android.widget.CheckBox
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
-import com.capacitacion2.sqlite_en_android.DataManager
-
 
 class MainActivity : AppCompatActivity()
 {
-    var dataManager : DataManager = null
+    var dataManager : DataManager = DataManager(this)
     var botonGuardar = findViewById<Button>(R.id.boton_guardar)
     var lectorNombre = findViewById<EditText>(R.id.lector_nombre)
     var lectorApellidoP = findViewById<EditText>(R.id.lector_apellido_p)
@@ -73,9 +71,9 @@ class MainActivity : AppCompatActivity()
 
             if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
             {
-                var fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario, cumFecha)
+                var fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
                 dataManager.guardarPersonita(fulanito)
-                Toast.makeText(this, "Personita "+ fulanito.toString() +" guardada", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Personita " + fulanito.toString() + " guardada", Toast.LENGTH_LONG).show()
                 lectorNombre.text.clear()
                 lectorApellidoP.text.clear()
                 lectorApellidoM.text.clear()
