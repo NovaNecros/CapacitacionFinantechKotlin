@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DataManager(contexto : Context)
 {
-    var dbHelper : SQLiteOpenHelper = DBHelper(contexto)
+    val dbHelper : SQLiteOpenHelper = DBHelper(contexto)
     var baseDatos : SQLiteDatabase = dbHelper.writableDatabase
 
     fun abrir()
@@ -28,7 +28,7 @@ class DataManager(contexto : Context)
 
     fun guardarPersonita(fulanito : Personita)
     {
-        var valores = ContentValues()
+        val valores = ContentValues()
         valores.put("nombre", fulanito.nombre)
         valores.put("apellidoP", fulanito.apellidoP)
         valores.put("apellidoM", fulanito.apellidoM)
@@ -40,13 +40,13 @@ class DataManager(contexto : Context)
 
     fun leerPersonitas() : Array<Personita>
     {
-        var personitas = mutableListOf<Personita>()
-        var columnas = arrayOf("nombre", "apellidoP", "apellidoM", "genero", "fecha")
-        var cursor : Cursor = baseDatos.query("personitas", columnas, null, null, null, null, null)
+        val personitas = mutableListOf<Personita>()
+        val columnas = arrayOf("nombre", "apellidoP", "apellidoM", "genero", "fecha")
+        val cursor : Cursor = baseDatos.query("personitas", columnas, null, null, null, null, null)
 
         while(cursor.moveToNext())
         {
-            var fulanito = Personita()
+            val fulanito = Personita()
 
             fulanito.nombre = cursor.getString(0)
             fulanito.apellidoP = cursor.getString(1)
@@ -61,6 +61,4 @@ class DataManager(contexto : Context)
 
         return personitas.toTypedArray()
     }
-
-
 }

@@ -4,11 +4,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(contexto : Context?) : SQLiteOpenHelper(contexto, "base.db", null, 1)
+class DBHelper(contexto : Context) : SQLiteOpenHelper(contexto, contexto.getString(R.string.db_name), null, 1)
 {
-    val BDNombre : String = "base.db"
-    val BDVersion : Int = 1
-
     override fun onCreate(db : SQLiteDatabase)
     {
         val comandoSQL : String = "CREATE TABLE personitas(id_personitas INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +

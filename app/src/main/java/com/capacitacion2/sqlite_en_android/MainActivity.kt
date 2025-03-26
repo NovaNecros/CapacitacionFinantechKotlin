@@ -19,17 +19,17 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity()
 {
-    var dataManager : DataManager = DataManager(this)
-    var botonGuardar = findViewById<Button>(R.id.boton_guardar)
-    var lectorNombre = findViewById<EditText>(R.id.lector_nombre)
-    var lectorApellidoP = findViewById<EditText>(R.id.lector_apellido_p)
-    var lectorApellidoM = findViewById<EditText>(R.id.lector_apellido_m)
-    var masculino = findViewById<CheckBox>(R.id.masculino)
-    var femenino = findViewById<CheckBox>(R.id.femenino)
-    var nobinario = findViewById<CheckBox>(R.id.nobinario)
-    var otroGenero = findViewById<EditText>(R.id.lector_otro_genero)
-    var fecha = findViewById<CalendarView>(R.id.fecha_calendario)
-    var listaPersonitas = findViewById<ListView>(R.id.lista_personitas)
+    val dataManager : DataManager = DataManager(this)
+    val botonGuardar = findViewById<Button>(R.id.boton_guardar)
+    val lectorNombre = findViewById<EditText>(R.id.lector_nombre)
+    val lectorApellidoP = findViewById<EditText>(R.id.lector_apellido_p)
+    val lectorApellidoM = findViewById<EditText>(R.id.lector_apellido_m)
+    val masculino = findViewById<CheckBox>(R.id.masculino)
+    val femenino = findViewById<CheckBox>(R.id.femenino)
+    val nobinario = findViewById<CheckBox>(R.id.nobinario)
+    val otroGenero = findViewById<EditText>(R.id.lector_otro_genero)
+    val fecha = findViewById<CalendarView>(R.id.fecha_calendario)
+    val listaPersonitas = findViewById<ListView>(R.id.lista_personitas)
 
     override fun onCreate(savedInstanceState : Bundle?)
     {
@@ -45,16 +45,16 @@ class MainActivity : AppCompatActivity()
 
         botonGuardar.setOnClickListener(View.OnClickListener
         {
-            var nombre : String = lectorNombre.getText().toString()
-            var apellidoP : String = lectorApellidoP.getText().toString()
-            var apellidoM : String = lectorApellidoM.getText().toString()
-            var generosUsuario = mutableListOf<String>()
-            var cumFecha : String = fecha.date.toString()
-            var generos = arrayOf(masculino, femenino, nobinario)
+            val nombre : String = lectorNombre.getText().toString()
+            val apellidoP : String = lectorApellidoP.getText().toString()
+            val apellidoM : String = lectorApellidoM.getText().toString()
+            val generosUsuario = mutableListOf<String>()
+            val cumFecha : String = fecha.date.toString()
+            val generos = arrayOf(masculino, femenino, nobinario)
 
             for(genero in generos)
             {
-                if (genero.isChecked)
+                if(genero.isChecked)
                 {
                     generosUsuario.add(genero.text.toString())
                 }
@@ -68,11 +68,11 @@ class MainActivity : AppCompatActivity()
             {
                 Snackbar.make(it, resources.getString(R.string.no_genero_ex), Snackbar.LENGTH_SHORT).show()
             }
-
-            if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
+            else if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
             {
-                var fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
+                val fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
                 dataManager.guardarPersonita(fulanito)
+
                 Toast.makeText(this, "Personita " + fulanito.toString() + " guardada", Toast.LENGTH_LONG).show()
                 lectorNombre.text.clear()
                 lectorApellidoP.text.clear()
