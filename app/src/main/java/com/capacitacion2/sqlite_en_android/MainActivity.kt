@@ -16,6 +16,8 @@ import android.widget.CheckBox
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
+import com.capacitacion2.sqlite_en_android.DataManager
+
 
 class MainActivity : AppCompatActivity()
 {
