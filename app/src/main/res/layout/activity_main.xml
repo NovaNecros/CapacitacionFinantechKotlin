@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,13 +8,158 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <LinearLayout
+        android:layout_width="375dp"
+        android:layout_height="694dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.5">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:visibility="visible"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo"
+            android:textStyle="bold"
+            android:textSize="34sp"
+            android:gravity="center"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombre"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/lector_nombre"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+
+                <TextView
+                    android:id="@+id/apellido_p"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apellido_p"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/lector_apellido_p"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+
+                <TextView
+                    android:id="@+id/apellido_m"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apellido_m"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/lector_apellido_m"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+
+                <TextView
+                    android:id="@+id/fecha"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bdate"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <CalendarView
+                    android:id="@+id/fecha_calendario"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+
+                <TextView
+                    android:id="@+id/genero"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <CheckBox
+                    android:id="@+id/masculino"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male"
+                    android:visibility="visible"
+                    android:gravity="start"/>
+                <CheckBox
+                    android:id="@+id/femenino"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female"
+                    android:visibility="visible"
+                    android:gravity="start"/>
+                <CheckBox
+                    android:id="@+id/nobinario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nonbinary"
+                    android:visibility="visible"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:id="@+id/otro_genero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/other_gender"/>
+                <EditText
+                    android:id="@+id/lector_otro_genero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+
+                <Button
+                    android:id="@+id/boton_guardar"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"/>
+
+                <ListView
+                    android:id="@+id/lista_personitas"
+                    android:layout_width="match_parent"
+                    android:layout_height="199dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

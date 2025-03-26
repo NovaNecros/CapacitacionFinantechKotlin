@@ -13,7 +13,6 @@ import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.CheckBox
-import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
@@ -28,8 +27,8 @@ class MainActivity : AppCompatActivity()
     var masculino = findViewById<CheckBox>(R.id.masculino)
     var femenino = findViewById<CheckBox>(R.id.femenino)
     var nobinario = findViewById<CheckBox>(R.id.nobinario)
-    var otroGenero = findViewById<EditText>(R.id.otro_genero)
-    var fecha = findViewById<CalendarView>(R.id.fecha)
+    var otroGenero = findViewById<EditText>(R.id.lector_otro_genero)
+    var fecha = findViewById<CalendarView>(R.id.fecha_calendario)
     var listaPersonitas = findViewById<ListView>(R.id.lista_personitas)
 
     override fun onCreate(savedInstanceState : Bundle?)
@@ -46,11 +45,11 @@ class MainActivity : AppCompatActivity()
 
         botonGuardar.setOnClickListener(View.OnClickListener
         {
-            var nombre: String = lectorNombre.getText().toString()
-            var apellidoP: String = lectorApellidoP.getText().toString()
-            var apellidoM: String = lectorApellidoM.getText().toString()
+            var nombre : String = lectorNombre.getText().toString()
+            var apellidoP : String = lectorApellidoP.getText().toString()
+            var apellidoM : String = lectorApellidoM.getText().toString()
             var generosUsuario = mutableListOf<String>()
-            var curDate: String = fecha.date.toString()
+            var cumFecha : String = fecha.date.toString()
             var generos = arrayOf(masculino, femenino, nobinario)
 
             for(genero in generos)
@@ -67,12 +66,12 @@ class MainActivity : AppCompatActivity()
 
             if(generosUsuario.isEmpty())
             {
-                Snackbar.make(it, "Debes seleccionar al menos un género", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it, resources.getString(R.string.no_genero_ex), Snackbar.LENGTH_SHORT).show()
             }
 
-            if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && apellidoM.isNotEmpty() && curDate.isNotEmpty())
+            if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
             {
-                var fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario, curDate)
+                var fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario, cumFecha)
                 dataManager.guardarPersonita(fulanito)
                 Toast.makeText(this, "Personita "+ fulanito.toString() +" guardada", Toast.LENGTH_LONG).show()
                 lectorNombre.text.clear()
@@ -90,7 +89,7 @@ class MainActivity : AppCompatActivity()
             }
             else
             {
-                Snackbar.make(it, "Debes llenar todos los campos", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it, resources.getString(R.string.datos_incompletos_ex), Snackbar.LENGTH_SHORT).show()
             }
         })
     }
