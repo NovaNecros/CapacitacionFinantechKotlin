@@ -6,161 +6,73 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/crema"
     tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_width="375dp"
-        android:layout_height="694dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintHorizontal_bias="0.5">
+    <?xml version="1.0" encoding="utf-8"?>
 
         <TextView
             android:id="@+id/titulo"
             android:visibility="visible"
-            android:layout_width="375dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo"
             android:textStyle="bold"
             android:textSize="34sp"
-            android:gravity="center"/>
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.225"
+            app:layout_constraintHorizontal_bias="0.5"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75"
+            app:layout_constraintHorizontal_bias="0.5">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_nueva"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="@string/nueva"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/verdepastel"
+                android:layout_marginBottom="24dp"/>
 
-                <TextView
-                    android:id="@+id/nombre"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/lector_nombre"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"/>
+            <Button
+                android:id="@+id/btn_borrar"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/borrar"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/azulpastel"
+                android:layout_marginBottom="24dp"/>
 
-                <TextView
-                    android:id="@+id/apellido_p"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/apellido_p"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/lector_apellido_p"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"/>
+            <Button
+                android:id="@+id/btn_mostrar"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mostrar"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/moradopastel"/>
 
-                <TextView
-                    android:id="@+id/apellido_m"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/apellido_m"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/lector_apellido_m"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"/>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/fecha"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bdate"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-                <CalendarView
-                    android:id="@+id/fecha_calendario"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"/>
-
-                <TextView
-                    android:id="@+id/genero"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gender"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="24dp"/>
-                <CheckBox
-                    android:id="@+id/masculino"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/male"
-                    android:visibility="visible"
-                    android:gravity="start"/>
-                <CheckBox
-                    android:id="@+id/femenino"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/female"
-                    android:visibility="visible"
-                    android:gravity="start"/>
-                <CheckBox
-                    android:id="@+id/nobinario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nonbinary"
-                    android:visibility="visible"
-                    android:gravity="start"/>
-
-                <TextView
-                    android:id="@+id/otro_genero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/other_gender"/>
-                <EditText
-                    android:id="@+id/lector_otro_genero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"/>
-
-                <Button
-                    android:id="@+id/boton_guardar"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/save"/>
-
-                <ListView
-                    android:id="@+id/lista_personitas"
-                    android:layout_width="match_parent"
-                    android:layout_height="199dp"/>
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

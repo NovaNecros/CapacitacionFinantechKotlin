@@ -2,16 +2,23 @@
     <string name="app_name">SQLite_en_Android</string>
     <string name="db_name">personitas.db</string>
     <string name="titulo">Personita</string>
+
     <string name="name">Nombre</string>
     <string name="apellido_p">Apellido Paterno</string>
     <string name="apellido_m">Apellido Materno</string>
     <string name="bdate">Fecha de Nacimiento</string>
     <string name="gender">Género</string>
+
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="nonbinary">No Binario</string>
     <string name="other_gender">Otro</string>
+
     <string name="save">Guardar</string>
+    <string name="nueva">Nueva Personita</string>
+    <string name="borrar">Eliminar Personita</string>
+    <string name="mostrar">Mostrar Personitas</string>
+
     <string name="no_genero_ex">Debes seleccionar al menos un género</string>
     <string name="datos_incompletos_ex">"Debes llenar todos los campos"</string>
 
