@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DataManager(contexto : Context)
 {
-    var dbHelper : SQLiteOpenHelper = dbHelper(contexto)
-    var baseDatos : SQLiteDatabase = dbHelper.writableDatabase
+    var dbHelper : SQLiteOpenHelper = DBHelper(contexto)
+    var baseDatos : SQLiteDatabase = DBHelper.writableDatabase
 
     fun abrir()
     {
