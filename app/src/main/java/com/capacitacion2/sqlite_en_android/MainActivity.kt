@@ -1,6 +1,5 @@
 package com.capacitacion2.sqlite_en_android
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,8 +15,6 @@ import android.widget.ListView
 import android.widget.CheckBox
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
-
-import java.util.Calendar
 
 class MainActivity : AppCompatActivity()
 {
@@ -48,6 +45,7 @@ class MainActivity : AppCompatActivity()
 
         dataManager = DataManager(this)
         listaPersonitas = findViewById(R.id.lista_personitas)
+        mostrarPersonitas()
 
         botonGuardar.setOnClickListener(View.OnClickListener
         {
@@ -79,36 +77,22 @@ class MainActivity : AppCompatActivity()
                 val fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
                 dataManager!!.guardarPersonita(fulanito)
 
-                Toast.makeText(this, "Personita " + fulanito.toString() + " guardada", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Personita ${fulanito} guardada", Toast.LENGTH_LONG).show()
                 lectorNombre.text.clear()
                 lectorApellidoP.text.clear()
                 lectorApellidoM.text.clear()
-                calendarioView.date = 0
+                calendarioView.date = System.currentTimeMillis()
 
                 for(genero in generos)
                 {
                     genero.isChecked = false
                 }
                 otroGenero.text.clear()
-
-                mostrarPersonitas()
             }
             else
             {
-                Snackbar.make(it, resources.getString(R.string.datos_incompletos_ex), Snackbar.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.datos_incompletos_ex), Toast.LENGTH_LONG).show()
             }
-        })
-
-        calendarioView.setOnDateChangeListener(CalendarView.OnDateChangeListener
-        { view, year, month, dayOfMonth ->
-            val calendario : Calendar = Calendar.getInstance()
-            val yearPresente : Int = calendario.get(Calendar.YEAR)
-            var selectorYear : DatePickerDialog = DatePickerDialog(applicationContext,
-                {_,selectedYear,_,_ ->
-                    calendarioView.date = calendario.apply{ set(Calendar.YEAR, selectedYear) }.timeInMillis
-                }, yearPresente, 0, 1)
-
-            selectorYear.show()
         })
     }
 
@@ -131,7 +115,7 @@ class MainActivity : AppCompatActivity()
             val personitas = dataManager!!.leerPersonitas()
             val adaptador = ArrayAdapter<Personita>(applicationContext, android.R.layout.simple_list_item_1, personitas)
             listaPersonitas!!.adapter = adaptador
-            listaPersonitas!!.setVerticalScrollBarEnabled(true)
+            listaPersonitas!!.isVerticalScrollBarEnabled = true
         }
         catch(ex : Exception)
         {
