@@ -1,5 +1,6 @@
 package com.capacitacion2.sqlite_en_android
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,20 +17,12 @@ import android.widget.CheckBox
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity()
 {
-    val dataManager : DataManager = DataManager(this)
-    val botonGuardar = findViewById<Button>(R.id.boton_guardar)
-    val lectorNombre = findViewById<EditText>(R.id.lector_nombre)
-    val lectorApellidoP = findViewById<EditText>(R.id.lector_apellido_p)
-    val lectorApellidoM = findViewById<EditText>(R.id.lector_apellido_m)
-    val masculino = findViewById<CheckBox>(R.id.masculino)
-    val femenino = findViewById<CheckBox>(R.id.femenino)
-    val nobinario = findViewById<CheckBox>(R.id.nobinario)
-    val otroGenero = findViewById<EditText>(R.id.lector_otro_genero)
-    val fecha = findViewById<CalendarView>(R.id.fecha_calendario)
-    val listaPersonitas = findViewById<ListView>(R.id.lista_personitas)
+    var dataManager : DataManager? = null
+    var listaPersonitas : ListView? = null
 
     override fun onCreate(savedInstanceState : Bundle?)
     {
@@ -43,13 +36,26 @@ class MainActivity : AppCompatActivity()
             insets
         }
 
+        val botonGuardar = findViewById<Button>(R.id.boton_guardar)
+        val lectorNombre = findViewById<EditText>(R.id.lector_nombre)
+        val lectorApellidoP = findViewById<EditText>(R.id.lector_apellido_p)
+        val lectorApellidoM = findViewById<EditText>(R.id.lector_apellido_m)
+        val masculino = findViewById<CheckBox>(R.id.masculino)
+        val femenino = findViewById<CheckBox>(R.id.femenino)
+        val nobinario = findViewById<CheckBox>(R.id.nobinario)
+        val otroGenero = findViewById<EditText>(R.id.lector_otro_genero)
+        val calendarioView = findViewById<CalendarView>(R.id.fecha_calendario)
+
+        dataManager = DataManager(this)
+        listaPersonitas = findViewById(R.id.lista_personitas)
+
         botonGuardar.setOnClickListener(View.OnClickListener
         {
             val nombre : String = lectorNombre.getText().toString()
             val apellidoP : String = lectorApellidoP.getText().toString()
             val apellidoM : String = lectorApellidoM.getText().toString()
             val generosUsuario = mutableListOf<String>()
-            val cumFecha : String = fecha.date.toString()
+            val cumFecha : String = calendarioView.date.toString()
             val generos = arrayOf(masculino, femenino, nobinario)
 
             for(genero in generos)
@@ -71,13 +77,13 @@ class MainActivity : AppCompatActivity()
             else if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
             {
                 val fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
-                dataManager.guardarPersonita(fulanito)
+                dataManager!!.guardarPersonita(fulanito)
 
                 Toast.makeText(this, "Personita " + fulanito.toString() + " guardada", Toast.LENGTH_LONG).show()
                 lectorNombre.text.clear()
                 lectorApellidoP.text.clear()
                 lectorApellidoM.text.clear()
-                fecha.date = 0
+                calendarioView.date = 0
 
                 for(genero in generos)
                 {
@@ -92,17 +98,29 @@ class MainActivity : AppCompatActivity()
                 Snackbar.make(it, resources.getString(R.string.datos_incompletos_ex), Snackbar.LENGTH_SHORT).show()
             }
         })
+
+        calendarioView.setOnDateChangeListener(CalendarView.OnDateChangeListener
+        { view, year, month, dayOfMonth ->
+            val calendario : Calendar = Calendar.getInstance()
+            val yearPresente : Int = calendario.get(Calendar.YEAR)
+            var selectorYear : DatePickerDialog = DatePickerDialog(applicationContext,
+                {_,selectedYear,_,_ ->
+                    calendarioView.date = calendario.apply{ set(Calendar.YEAR, selectedYear) }.timeInMillis
+                }, yearPresente, 0, 1)
+
+            selectorYear.show()
+        })
     }
 
     override fun onPause()
     {
-        dataManager.cerrar()
+        dataManager!!.cerrar()
         super.onPause()
     }
 
     override fun onResume()
     {
-        dataManager.abrir()
+        dataManager!!.abrir()
         super.onResume()
     }
 
@@ -110,10 +128,10 @@ class MainActivity : AppCompatActivity()
     {
         try
         {
-            var personitas = dataManager.leerPersonitas()
-            var adaptador = ArrayAdapter<Personita>(applicationContext, android.R.layout.simple_list_item_1, personitas)
-            listaPersonitas.adapter = adaptador
-            listaPersonitas.setVerticalScrollBarEnabled(true)
+            val personitas = dataManager!!.leerPersonitas()
+            val adaptador = ArrayAdapter<Personita>(applicationContext, android.R.layout.simple_list_item_1, personitas)
+            listaPersonitas!!.adapter = adaptador
+            listaPersonitas!!.setVerticalScrollBarEnabled(true)
         }
         catch(ex : Exception)
         {
