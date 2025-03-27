@@ -61,4 +61,6 @@ class DataManager(contexto : Context)
 
         return personitas.toTypedArray()
     }
+
+    fun borrarPersonita(id: Int) : Int = baseDatos.delete("personitas", "id_personitas = ?", arrayOf(id.toString()))
 }

@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity()
 
         borrarPersonita.setOnClickListener(View.OnClickListener
         { v->
-            /*TODO intent = Intent(applicationContext, ThirdActivity::class.java)
-            startActivity(intent)*/
+            intent = Intent(applicationContext, ThirdActivity::class.java)
+            startActivity(intent)
         })
 
         mostrarListaPersonitas.setOnClickListener(View.OnClickListener
