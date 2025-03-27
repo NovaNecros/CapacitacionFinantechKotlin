@@ -33,7 +33,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="494dp"
+            android:layout_marginBottom="48dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -171,8 +172,8 @@
             android:text="@string/regresar"
             android:textStyle="bold"
             android:textSize="28sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/verdepastel"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/crema"
             android:layout_marginBottom="24dp"/>
 
     </LinearLayout>
