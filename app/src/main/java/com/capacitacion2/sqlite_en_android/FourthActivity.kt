@@ -34,7 +34,7 @@ class FourthActivity : AppCompatActivity()
         try
         {
             val personitas = dataManager.leerPersonitas()
-            val adaptador = ArrayAdapter<Personita>(applicationContext, android.R.layout.simple_list_item_1, personitas)
+            val adaptador = CustomAdapter(applicationContext, personitas)
             listaPersonitas.adapter = adaptador
             listaPersonitas.isVerticalScrollBarEnabled = true
         }

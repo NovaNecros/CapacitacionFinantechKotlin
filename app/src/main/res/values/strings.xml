@@ -22,5 +22,6 @@
 
     <string name="no_genero_ex">Debes seleccionar al menos un género</string>
     <string name="datos_incompletos_ex">"Debes llenar todos los campos"</string>
+    <string name="default_text">:b</string>
 
 </resources>
