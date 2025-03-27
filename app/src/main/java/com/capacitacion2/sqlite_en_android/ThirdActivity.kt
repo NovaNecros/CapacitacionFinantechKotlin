@@ -11,10 +11,11 @@ import android.widget.Button
 import android.view.View
 
 import android.content.Intent
+import androidx.appcompat.app.AlertDialog
 
 class ThirdActivity : AppCompatActivity()
 {
-    override fun onCreate(savedInstanceState: Bundle?)
+    override fun onCreate(savedInstanceState : Bundle?)
     {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,6 +45,27 @@ class ThirdActivity : AppCompatActivity()
             val color : Int = resources.getColor(R.color.rojosangre)
             SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
         }
+
+        listaPersonitas.setOnItemClickListener(
+        { parent, view, pos, id ->
+
+            val selected = parent.getItemAtPosition(pos) as Personita
+
+            val alertDialog = AlertDialog.Builder(applicationContext)
+                .setTitle("Eliminar").setMessage("¿Deseas eliminar a ${selected}?")
+                .setPositiveButton("Sí")
+                { _, _ ->
+                    dataManager.borrarPersonita(selected)
+                    val texto : String = "Personita ${selected} eliminada"
+                    val color : Int = resources.getColor(R.color.brat)
+                    SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
+                    recreate()
+                }
+                .setNegativeButton("No", null).create()
+
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+        })
 
         botonRegresar.setOnClickListener(View.OnClickListener
         {

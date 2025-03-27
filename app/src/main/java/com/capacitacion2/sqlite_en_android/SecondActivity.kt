@@ -76,7 +76,7 @@ class SecondActivity : AppCompatActivity()
 
                 val view = findViewById<View>(android.R.id.content)
                 val texto : String = "Personita ${fulanito} guardada"
-                val color : Int = resources.getColor(R.color.rojosangre)
+                val color : Int = resources.getColor(R.color.brat)
                 SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
 
                 lectorNombre.text.clear()

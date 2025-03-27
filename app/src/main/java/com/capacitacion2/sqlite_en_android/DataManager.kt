@@ -29,6 +29,8 @@ class DataManager(contexto : Context)
     fun guardarPersonita(fulanito : Personita)
     {
         val valores = ContentValues()
+        fulanito.id = getNewID()
+        valores.put("id_personitas", fulanito.id)
         valores.put("nombre", fulanito.nombre)
         valores.put("apellidoP", fulanito.apellidoP)
         valores.put("apellidoM", fulanito.apellidoM)
@@ -48,6 +50,7 @@ class DataManager(contexto : Context)
         {
             val fulanito = Personita()
 
+            fulanito.id = cursor.getInt(0)
             fulanito.nombre = cursor.getString(0)
             fulanito.apellidoP = cursor.getString(1)
             fulanito.apellidoM = cursor.getString(2)
@@ -62,5 +65,20 @@ class DataManager(contexto : Context)
         return personitas.toTypedArray()
     }
 
-    fun borrarPersonita(id: Int) : Int = baseDatos.delete("personitas", "id_personitas = ?", arrayOf(id.toString()))
+    fun borrarPersonita(fulanito : Personita) : Int = baseDatos.delete("personitas", "id_personitas = ?", arrayOf(fulanito.id.toString()))
+
+    fun getNewID() : Int
+    {
+        val cursor = baseDatos.rawQuery("SELECT MAX(id_personitas) FROM personitas", null)
+        var maxID = 0
+
+        if(cursor.moveToFirst())
+        {
+            maxID = cursor.getInt(0)
+        }
+        cursor.close()
+
+        return maxID + 1
+    }
+
 }

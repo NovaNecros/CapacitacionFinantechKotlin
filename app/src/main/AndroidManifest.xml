@@ -26,6 +26,10 @@
             android:exported="true">
         </activity>
         <activity
+            android:name="com.capacitacion2.sqlite_en_android.ThirdActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name="com.capacitacion2.sqlite_en_android.FourthActivity"
             android:exported="true">
         </activity>
