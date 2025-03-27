@@ -8,71 +8,70 @@
     android:layout_height="match_parent"
     android:background="@color/crema"
     tools:context=".MainActivity">
-    <?xml version="1.0" encoding="utf-8"?>
 
-        <TextView
-            android:id="@+id/titulo"
+    <TextView
+        android:id="@+id/titulo"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo"
+        android:textStyle="bold"
+        android:textSize="34sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <LinearLayout
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.5">
+
+        <Button
+            android:id="@+id/btn_nueva"
             android:visibility="visible"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/titulo"
+            android:text="@string/nueva"
             android:textStyle="bold"
-            android:textSize="34sp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.225"
-            app:layout_constraintHorizontal_bias="0.5"/>
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/verdepastel"
+            android:layout_marginBottom="24dp"/>
 
-        <LinearLayout
-            android:layout_width="375dp"
+        <Button
+            android:id="@+id/btn_borrar"
+            android:visibility="visible"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
-            app:layout_constraintHorizontal_bias="0.5">
+            android:text="@string/borrar"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/azulpastel"
+            android:layout_marginBottom="24dp"/>
 
-            <Button
-                android:id="@+id/btn_nueva"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/nueva"
-                android:textStyle="bold"
-                android:textSize="28sp"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/verdepastel"
-                android:layout_marginBottom="24dp"/>
+        <Button
+            android:id="@+id/btn_mostrar"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mostrar"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/moradopastel"/>
 
-            <Button
-                android:id="@+id/btn_borrar"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/borrar"
-                android:textStyle="bold"
-                android:textSize="28sp"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/azulpastel"
-                android:layout_marginBottom="24dp"/>
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_mostrar"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/mostrar"
-                android:textStyle="bold"
-                android:textSize="28sp"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/moradopastel"/>
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

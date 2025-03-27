@@ -13,7 +13,7 @@ import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.CheckBox
-import android.widget.Toast
+import android.content.Intent
 import com.google.android.material.snackbar.Snackbar
 
 class SecondActivity : AppCompatActivity()
@@ -34,6 +34,7 @@ class SecondActivity : AppCompatActivity()
         }
 
         val botonGuardar = findViewById<Button>(R.id.boton_guardar)
+        val botonRegresar = findViewById<Button>(R.id.btn_back)
         val lectorNombre = findViewById<EditText>(R.id.lector_nombre)
         val lectorApellidoP = findViewById<EditText>(R.id.lector_apellido_p)
         val lectorApellidoM = findViewById<EditText>(R.id.lector_apellido_m)
@@ -77,7 +78,11 @@ class SecondActivity : AppCompatActivity()
                 val fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
                 dataManager!!.guardarPersonita(fulanito)
 
-                Toast.makeText(this, "Personita ${fulanito} guardada", Toast.LENGTH_LONG).show()
+                val view = findViewById<View>(android.R.id.content)
+                val texto : String = "Personita ${fulanito} guardada"
+                val color : Int = resources.getColor(R.color.rojosangre)
+                SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
+
                 lectorNombre.text.clear()
                 lectorApellidoP.text.clear()
                 lectorApellidoM.text.clear()
@@ -91,8 +96,17 @@ class SecondActivity : AppCompatActivity()
             }
             else
             {
-                Toast.makeText(this, resources.getString(R.string.datos_incompletos_ex), Toast.LENGTH_LONG).show()
+                val view = findViewById<View>(android.R.id.content)
+                val texto : String = resources.getString(R.string.datos_incompletos_ex)
+                val color : Int = resources.getColor(R.color.rojosangre)
+                SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
             }
+        })
+
+        botonRegresar.setOnClickListener(View.OnClickListener
+        {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         })
     }
 
@@ -119,7 +133,10 @@ class SecondActivity : AppCompatActivity()
         }
         catch(ex : Exception)
         {
-            Toast.makeText(applicationContext, ex.message, Toast.LENGTH_LONG).show()
+            val view = findViewById<View>(android.R.id.content)
+            val texto : String = ex.message.toString()
+            val color : Int = resources.getColor(R.color.rojosangre)
+            SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
         }
     }
 }

@@ -18,6 +18,7 @@
     <string name="nueva">Nueva Personita</string>
     <string name="borrar">Eliminar Personita</string>
     <string name="mostrar">Mostrar Personitas</string>
+    <string name="regresar">Regresar</string>
 
     <string name="no_genero_ex">Debes seleccionar al menos un género</string>
     <string name="datos_incompletos_ex">"Debes llenar todos los campos"</string>

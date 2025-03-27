@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondActivity"
+            android:name="com.capacitacion2.sqlite_en_android.SecondActivity"
             android:exported="true">
         </activity>
     </application>
