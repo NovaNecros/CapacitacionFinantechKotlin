@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.CheckBox
 import android.content.Intent
 import com.google.android.material.snackbar.Snackbar
@@ -19,7 +18,6 @@ import com.google.android.material.snackbar.Snackbar
 class SecondActivity : AppCompatActivity()
 {
     var dataManager : DataManager? = null
-    var listaPersonitas : ListView? = null
 
     override fun onCreate(savedInstanceState : Bundle?)
     {
@@ -45,8 +43,6 @@ class SecondActivity : AppCompatActivity()
         val calendarioView = findViewById<CalendarView>(R.id.fecha_calendario)
 
         dataManager = DataManager(this)
-        listaPersonitas = findViewById(R.id.lista_personitas)
-        mostrarPersonitas()
 
         botonGuardar.setOnClickListener(View.OnClickListener
         {
@@ -120,23 +116,5 @@ class SecondActivity : AppCompatActivity()
     {
         dataManager!!.abrir()
         super.onResume()
-    }
-
-    fun mostrarPersonitas()
-    {
-        try
-        {
-            val personitas = dataManager!!.leerPersonitas()
-            val adaptador = ArrayAdapter<Personita>(applicationContext, android.R.layout.simple_list_item_1, personitas)
-            listaPersonitas!!.adapter = adaptador
-            listaPersonitas!!.isVerticalScrollBarEnabled = true
-        }
-        catch(ex : Exception)
-        {
-            val view = findViewById<View>(android.R.id.content)
-            val texto : String = ex.message.toString()
-            val color : Int = resources.getColor(R.color.rojosangre)
-            SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
-        }
     }
 }

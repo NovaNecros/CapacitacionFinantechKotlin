@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity()
 
         val nuevaPersonita = findViewById<Button>(R.id.btn_nueva)
         val borrarPersonita = findViewById<Button>(R.id.btn_borrar)
-        val mostrarPersonitas = findViewById<TextView>(R.id.btn_mostrar)
+        val mostrarListaPersonitas = findViewById<TextView>(R.id.btn_mostrar)
 
 
         nuevaPersonita.setOnClickListener(View.OnClickListener
@@ -43,10 +43,10 @@ class MainActivity : AppCompatActivity()
             startActivity(intent)*/
         })
 
-        mostrarPersonitas.setOnClickListener(View.OnClickListener
+        mostrarListaPersonitas.setOnClickListener(View.OnClickListener
         { v ->
-            /*TODO intent = Intent(applicationContext, FourthActivity::class.java)
-            startActivity(intent)*/
+            intent = Intent(applicationContext, FourthActivity::class.java)
+            startActivity(intent)
         })
     }
 }
