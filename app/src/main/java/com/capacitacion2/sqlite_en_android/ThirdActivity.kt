@@ -1,3 +1,6 @@
+/*Esta clase crea una actividad en donde se pueden borrar
+personitas de la base de datos*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.os.Bundle
@@ -56,11 +59,14 @@ class ThirdActivity : AppCompatActivity()
                 val color : Int = resources.getColor(R.color.brat)
                 SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
 
+                //reinicia la actividad para actualizar la lista
                 intent = Intent(applicationContext, ThirdActivity::class.java)
                 startActivity(intent)
             }
             else
             {
+                //inidca el ID que tiene la personita que no se pudo eliminar
+                //para ayudar a rastrear el error a la implemntación de la base de datos
                 val texto : String = "Error al eliminar.\nID=${res}"
                 val color : Int = resources.getColor(R.color.rojosangre)
                 SnackbarUtil.showSnackbar(applicationContext, view, texto, color)

@@ -1,3 +1,6 @@
+/*Esta clase gestiona la inserción, lectura y eliminación de personitas
+en la base de datos con SQLite*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.content.ContentValues
@@ -8,7 +11,6 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DataManager(contexto : Context)
 {
-    private val contexto : Context = contexto
     val dbHelper : SQLiteOpenHelper = DBHelper(contexto)
     var baseDatos : SQLiteDatabase = dbHelper.writableDatabase
 
@@ -30,7 +32,6 @@ class DataManager(contexto : Context)
     fun guardarPersonita(fulanito : Personita)
     {
         val valores = ContentValues()
-        fulanito.id = getNewID()
         valores.put("id_personitas", fulanito.id)
         valores.put("nombre", fulanito.nombre)
         valores.put("apellidoP", fulanito.apellidoP)
@@ -49,7 +50,7 @@ class DataManager(contexto : Context)
 
         while(cursor.moveToNext())
         {
-            val fulanito = Personita(contexto)
+            val fulanito = Personita()
 
             fulanito.id = cursor.getInt(0)
             fulanito.nombre = cursor.getString(1)
@@ -69,7 +70,7 @@ class DataManager(contexto : Context)
     fun borrarPersonita(fulanito: Personita)
     : Int = baseDatos.delete("personitas", "id_personitas = ?", arrayOf(fulanito.id.toString()))
 
-
+    //asigna el primer ID disponible al crear una nueva personita
     fun getNewID() : Int
     {
         val cursor = baseDatos.rawQuery("SELECT id_personitas FROM personitas ORDER BY id_personitas", null)
@@ -97,5 +98,4 @@ class DataManager(contexto : Context)
         cursor.close()
         return lastID + 1
     }
-
 }

@@ -1,10 +1,11 @@
+/*En esta clase se definen las propiedades de una personita*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.content.Context
 
-class Personita(contexto : Context)
+class Personita()
 {
-    private val dataManager = DataManager(contexto)
     var id : Int = 0
     var nombre : String = ""
     var apellidoP : String = ""
@@ -13,9 +14,9 @@ class Personita(contexto : Context)
     var fecha : String = ""
 
     constructor(contexto : Context, nombre : String, apellidoP : String, apellidoM : String, generos : String, fecha : String)
-            : this(contexto)
+            : this()
     {
-        this.id = dataManager.getNewID()
+        this.id = DataManager(contexto).getNewID()
         this.nombre = nombre
         this.apellidoP = apellidoP
         this.apellidoM = apellidoM

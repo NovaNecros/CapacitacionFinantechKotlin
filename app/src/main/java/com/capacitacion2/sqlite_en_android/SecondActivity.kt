@@ -1,3 +1,6 @@
+/*Esta clase crea una actividad en donde se pueden agregar
+personitas a la base de datos */
+
 package com.capacitacion2.sqlite_en_android
 
 import android.os.Bundle
@@ -53,6 +56,8 @@ class SecondActivity : AppCompatActivity()
             val cumFecha : String = calendarioView.date.toString()
             val generos = arrayOf(masculino, femenino, nobinario)
 
+            //se incluyen las opciones no-binario y otro y se utilizan
+            //checkboxes en vez de radiobuttons para fines de inclusividad
             for(genero in generos)
             {
                 if(genero.isChecked)
@@ -64,13 +69,14 @@ class SecondActivity : AppCompatActivity()
             {
                 generosUsuario.add(otroGenero.text.toString())
             }
-
-            if(generosUsuario.isEmpty())
+            else if(generosUsuario.isEmpty()) //valida que se haya seleccionado un género
             {
                 Snackbar.make(it, resources.getString(R.string.no_genero_ex), Snackbar.LENGTH_SHORT).show()
             }
             else if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
             {
+                //valida que el usuario haya llenado los datos solicitados
+                //excepto posiblemente el apellido materno
                 val fulanito = Personita(applicationContext, nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
                 dataManager!!.guardarPersonita(fulanito)
 

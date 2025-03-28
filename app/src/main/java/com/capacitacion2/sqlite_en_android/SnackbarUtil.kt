@@ -1,3 +1,5 @@
+/*Esta clase permite mostrar un snackbar personalizado*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.content.Context
@@ -10,7 +12,6 @@ import com.google.android.material.snackbar.Snackbar
 
 object SnackbarUtil
 {
-    //snackbar como alternativa a los Toast personalizados
     fun showSnackbar(contexto : Context, view : View, texto : String, col : Int)
     {
         val snackbar = Snackbar.make(view, texto, Snackbar.LENGTH_LONG)

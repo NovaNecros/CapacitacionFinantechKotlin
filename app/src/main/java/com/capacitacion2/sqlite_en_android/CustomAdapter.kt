@@ -1,3 +1,5 @@
+/*Esta clase crea un adaptador personalizado para el ListView*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.content.Context
@@ -16,8 +18,9 @@ class CustomAdapter(context : Context, private val data : Array<Personita>
     {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_listview, parent, false)
         val textViewItem = view.findViewById<TextView>(R.id.textViewItem)
-        textViewItem.text = data[pos].toString().trim()
+        textViewItem.text = data[pos].toString().trim() //elimina espacios en blanco al inicio y al final
 
+        //Alterna entre dos colores para facilitar la lectura
         if(pos % 2 == 0)
         {
             view.setBackgroundColor(ContextCompat.getColor(context, R.color.moradofuerte))

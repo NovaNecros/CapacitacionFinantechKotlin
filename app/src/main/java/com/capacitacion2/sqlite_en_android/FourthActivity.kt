@@ -1,3 +1,6 @@
+/*Esta clase crea una actividad en donde se puede visualizar a
+la  lista de personitas y seleccionar alguna de ellas*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.os.Bundle

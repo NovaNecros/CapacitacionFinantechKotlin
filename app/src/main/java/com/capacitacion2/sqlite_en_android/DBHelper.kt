@@ -1,3 +1,5 @@
+/*Esta clase interactúa directamente con la base de datos de SQLite*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.content.Context

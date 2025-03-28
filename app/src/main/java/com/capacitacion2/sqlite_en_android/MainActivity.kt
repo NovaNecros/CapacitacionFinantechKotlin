@@ -1,3 +1,5 @@
+/*Esta clase crea una actividad que sirve como menú principal*/
+
 package com.capacitacion2.sqlite_en_android
 
 import android.os.Bundle
