@@ -11,7 +11,6 @@ import android.widget.Button
 import android.view.View
 
 import android.content.Intent
-import androidx.appcompat.app.AlertDialog
 
 class ThirdActivity : AppCompatActivity()
 {
@@ -50,33 +49,22 @@ class ThirdActivity : AppCompatActivity()
         { parent, view, pos, id ->
 
             val selected = parent.getItemAtPosition(pos) as Personita
-
-            val texto : String = "Personita ${selected} eliminada"
-            val color : Int = resources.getColor(R.color.brat)
             val res : Int = dataManager.borrarPersonita(selected)
             if(res>0)
             {
+                val texto : String = "Personita ${selected} eliminada"
+                val color : Int = resources.getColor(R.color.brat)
                 SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
+
+                intent = Intent(applicationContext, ThirdActivity::class.java)
+                startActivity(intent)
             }
             else
             {
-                SnackbarUtil.showSnackbar(applicationContext, view, "Error al eliminar.\nRes=${res}", color)
+                val texto : String = "Error al eliminar.\nID=${res}"
+                val color : Int = resources.getColor(R.color.rojosangre)
+                SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
             }
-
-            /*val alertDialog = AlertDialog.Builder(applicationContext)
-                .setTitle("Eliminar").setMessage("¿Deseas eliminar a ${selected}?")
-                .setPositiveButton("Sí")
-                { _, _ ->
-                    dataManager.borrarPersonita(selected)
-                    val texto : String = "Personita ${selected} eliminada"
-                    val color : Int = resources.getColor(R.color.brat)
-                    SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
-                    recreate()
-                }
-                .setNegativeButton("No", null).create()
-
-            alertDialog.setCancelable(false)
-            alertDialog.show()*/
         })
 
         botonRegresar.setOnClickListener(View.OnClickListener
