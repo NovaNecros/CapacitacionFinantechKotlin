@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity()
         { buttonView, isChecked ->
             if(isChecked)
             {
-                if(!etName.text.toString().isEmpty())
+                if(etName.text.toString().isNotEmpty()) //verifica que se haya introducido información
                 {
                     tvName.visibility = View.INVISIBLE
                     etName.visibility = View.INVISIBLE
@@ -62,20 +62,20 @@ class MainActivity : AppCompatActivity()
                     fos.close()
 
                     val view = findViewById<View>(android.R.id.content)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                    val texto = ContextCompat.getString(applicationContext, R.string.toast_guardado)
+                    val col = ContextCompat.getColor(applicationContext, R.color.brat)
                     showSnackbar(view, texto, col)
                     //showToast(texto, col)
 
-                    etName.setText("")
+                    etName.text.clear()
                 }
                 else
                 {
                     val view = findViewById<View>(android.R.id.content)
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
+                    val col = ContextCompat.getColor(applicationContext, R.color.rojosangre)
+                    val texto = ContextCompat.getString(applicationContext, R.string.toast_vacio)
                     showSnackbar(view, texto, col)
-                    btnSave.isChecked = false
+                    btnSave.isChecked = false //no cambia el estado del botón si no se ha escrito nada
                 }
             }
             else
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity()
 
         msj.textSize = 24f
         msj.gravity = Gravity.CENTER_HORIZONTAL
-        msj.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
+        msj.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
 
         layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         layoutParams.setMargins(0, 250, 0, 0)
