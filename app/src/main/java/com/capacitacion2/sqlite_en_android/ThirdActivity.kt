@@ -51,7 +51,19 @@ class ThirdActivity : AppCompatActivity()
 
             val selected = parent.getItemAtPosition(pos) as Personita
 
-            val alertDialog = AlertDialog.Builder(applicationContext)
+            val texto : String = "Personita ${selected} eliminada"
+            val color : Int = resources.getColor(R.color.brat)
+            val res : Int = dataManager.borrarPersonita(selected)
+            if(res>0)
+            {
+                SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
+            }
+            else
+            {
+                SnackbarUtil.showSnackbar(applicationContext, view, "Error al eliminar.\nRes=${res}", color)
+            }
+
+            /*val alertDialog = AlertDialog.Builder(applicationContext)
                 .setTitle("Eliminar").setMessage("¿Deseas eliminar a ${selected}?")
                 .setPositiveButton("Sí")
                 { _, _ ->
@@ -64,7 +76,7 @@ class ThirdActivity : AppCompatActivity()
                 .setNegativeButton("No", null).create()
 
             alertDialog.setCancelable(false)
-            alertDialog.show()
+            alertDialog.show()*/
         })
 
         botonRegresar.setOnClickListener(View.OnClickListener

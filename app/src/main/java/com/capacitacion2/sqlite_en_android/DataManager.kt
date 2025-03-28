@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DataManager(contexto : Context)
 {
+    private val contexto : Context = contexto
     val dbHelper : SQLiteOpenHelper = DBHelper(contexto)
     var baseDatos : SQLiteDatabase = dbHelper.writableDatabase
 
@@ -43,19 +44,19 @@ class DataManager(contexto : Context)
     fun leerPersonitas() : Array<Personita>
     {
         val personitas = mutableListOf<Personita>()
-        val columnas = arrayOf("nombre", "apellidoP", "apellidoM", "genero", "fecha")
+        val columnas = arrayOf("id_personitas", "nombre", "apellidoP", "apellidoM", "genero", "fecha")
         val cursor : Cursor = baseDatos.query("personitas", columnas, null, null, null, null, null)
 
         while(cursor.moveToNext())
         {
-            val fulanito = Personita()
+            val fulanito = Personita(contexto)
 
             fulanito.id = cursor.getInt(0)
-            fulanito.nombre = cursor.getString(0)
-            fulanito.apellidoP = cursor.getString(1)
-            fulanito.apellidoM = cursor.getString(2)
-            fulanito.generos = cursor.getString(3)
-            fulanito.fecha = cursor.getString(4)
+            fulanito.nombre = cursor.getString(1)
+            fulanito.apellidoP = cursor.getString(2)
+            fulanito.apellidoM = cursor.getString(3)
+            fulanito.generos = cursor.getString(4)
+            fulanito.fecha = cursor.getString(5)
 
             personitas.add(fulanito)
         }
@@ -65,20 +66,36 @@ class DataManager(contexto : Context)
         return personitas.toTypedArray()
     }
 
-    fun borrarPersonita(fulanito : Personita) : Int = baseDatos.delete("personitas", "id_personitas = ?", arrayOf(fulanito.id.toString()))
+    fun borrarPersonita(fulanito: Personita)
+    : Int = baseDatos.delete("personitas", "id_personitas = ?", arrayOf(fulanito.id.toString()))
+
 
     fun getNewID() : Int
     {
-        val cursor = baseDatos.rawQuery("SELECT MAX(id_personitas) FROM personitas", null)
-        var maxID = 0
+        val cursor = baseDatos.rawQuery("SELECT id_personitas FROM personitas ORDER BY id_personitas", null)
 
-        if(cursor.moveToFirst())
+        if(cursor.count == 0)
         {
-            maxID = cursor.getInt(0)
+            cursor.close()
+            return 1
         }
-        cursor.close()
 
-        return maxID + 1
+        var lastID : Int = 0
+
+        while(cursor.moveToNext())
+        {
+            val currentID = cursor.getInt(0)
+
+            if(currentID != lastID + 1)
+            {
+                cursor.close()
+                return lastID + 1
+            }
+            lastID = currentID
+        }
+
+        cursor.close()
+        return lastID + 1
     }
 
 }

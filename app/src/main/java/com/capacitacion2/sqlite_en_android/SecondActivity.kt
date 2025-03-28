@@ -71,7 +71,7 @@ class SecondActivity : AppCompatActivity()
             }
             else if(nombre.isNotEmpty() && apellidoP.isNotEmpty() && cumFecha.isNotEmpty())
             {
-                val fulanito = Personita(nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
+                val fulanito = Personita(applicationContext, nombre, apellidoP, apellidoM, generosUsuario.toString(), cumFecha)
                 dataManager!!.guardarPersonita(fulanito)
 
                 val view = findViewById<View>(android.R.id.content)

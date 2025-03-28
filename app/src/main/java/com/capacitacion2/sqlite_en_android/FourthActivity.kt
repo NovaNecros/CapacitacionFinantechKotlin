@@ -45,6 +45,16 @@ class FourthActivity : AppCompatActivity()
             SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
         }
 
+        listaPersonitas.setOnItemClickListener(
+            { parent, view, pos, id ->
+
+                val selected = parent.getItemAtPosition(pos) as Personita
+
+                val texto : String = "Seleccionaste a ${selected}"
+                val color : Int = resources.getColor(R.color.brat)
+                SnackbarUtil.showSnackbar(applicationContext, view, texto, color)
+            })
+
         botonRegresar.setOnClickListener(View.OnClickListener
         {
             intent = Intent(applicationContext, MainActivity::class.java)
