@@ -1,3 +1,5 @@
+/*En esta clase se lee y almacena la información*/
+
 package com.capacitacion2.loadinginternalstorage
 
 import android.os.Bundle
@@ -20,8 +22,6 @@ import android.widget.FrameLayout
 import com.google.android.material.snackbar.Snackbar
 
 import java.io.FileOutputStream
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity()
 {
@@ -46,9 +46,9 @@ class MainActivity : AppCompatActivity()
 
         btnSave.setOnClickListener(View.OnClickListener
         { v->
-            if(!etName.text.toString().isEmpty())
+            if(etName.text.toString().isNotEmpty()) //verifica que se haya introducido información
             {
-                val fileName : String = ContextCompat.getString(getApplicationContext(), R.string.filename)
+                val fileName : String = ContextCompat.getString(applicationContext, R.string.filename)
                 val dataToSave : String = etName.text.toString()
 
                 val fos : FileOutputStream = openFileOutput(fileName, MODE_PRIVATE)
@@ -56,10 +56,9 @@ class MainActivity : AppCompatActivity()
                 fos.close()
 
                 val view = findViewById<View>(android.R.id.content)
-                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
-                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+                val texto = ContextCompat.getString(applicationContext, R.string.toast_guardado)
+                val col = ContextCompat.getColor(applicationContext, R.color.brat)
                 showSnackbar(view, texto, col)
-                //showToast(texto, col)
 
                 etName.text.clear()
                 btnContinue.visibility = View.VISIBLE
@@ -67,8 +66,8 @@ class MainActivity : AppCompatActivity()
             else
             {
                 val view = findViewById<View>(android.R.id.content)
-                val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
-                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
+                val col = ContextCompat.getColor(applicationContext, R.color.rojosangre)
+                val texto = ContextCompat.getString(applicationContext, R.string.toast_vacio)
                 showSnackbar(view, texto, col)
             }
         })
@@ -93,7 +92,7 @@ class MainActivity : AppCompatActivity()
 
         msj.textSize = 24f
         msj.gravity = Gravity.CENTER_HORIZONTAL //no sirve T___T
-        msj.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
+        msj.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
 
         layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         layoutParams.setMargins(0, 250, 0, 0)

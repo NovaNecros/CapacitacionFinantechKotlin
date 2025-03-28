@@ -2,7 +2,7 @@
     <string name="app_name">Preferences</string>
     <string name="filename">test_file</string>
     <string name="titulo">Internal Storage 102</string>
-    <string name="placeholdertext">No haz guardado nada</string>
+    <string name="placeholdertext">No has guardado nada</string>
     <string name="et_hint">Escribe algo aquí</string>
     <string name="save">Guardar</string>
     <string name="load">Cargar</string>

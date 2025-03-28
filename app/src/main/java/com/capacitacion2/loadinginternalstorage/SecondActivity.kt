@@ -1,3 +1,5 @@
+/*En esta clase se muestra la información guardada*/
+
 package com.capacitacion2.loadinginternalstorage
 
 import android.content.Intent
@@ -57,7 +59,7 @@ class SecondActivity : AppCompatActivity()
 
             val view = findViewById<View>(android.R.id.content)
             val texto : String = getString(R.string.toast_cargado)
-            val color : Int = ContextCompat.getColor(getApplicationContext(), R.color.brat)
+            val color : Int = ContextCompat.getColor(applicationContext, R.color.brat)
             showSnackbar(view, texto, color)
 
             btnLoad.visibility = View.INVISIBLE
@@ -85,7 +87,7 @@ class SecondActivity : AppCompatActivity()
 
         msj.textSize = 24f
         msj.gravity = Gravity.CENTER_HORIZONTAL //no sirve T___T
-        msj.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
+        msj.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
 
         layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         layoutParams.setMargins(0, 200, 0, 0)
