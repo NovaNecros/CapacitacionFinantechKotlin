@@ -1,3 +1,5 @@
+/*Esta clase lee la información y la envía a la segunda actividad*/
+
 package com.capacitacion2.databetweenactivities
 
 import android.os.Bundle
@@ -9,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity()
 {
@@ -28,12 +29,11 @@ class MainActivity : AppCompatActivity()
 
         val eText = findViewById<EditText>(R.id.eText)
         val btn1 = findViewById<Button>(R.id.btnAct1)
-
         btn1.setOnClickListener()
         {
             var data = eText.text.toString()
             val intent = Intent(applicationContext, SecondActivity::class.java)
-            intent.putExtra("userdata", data)
+            intent.putExtra("userdata", data) //manda el input a la segunda actividad
             startActivity(intent)
         }
     }

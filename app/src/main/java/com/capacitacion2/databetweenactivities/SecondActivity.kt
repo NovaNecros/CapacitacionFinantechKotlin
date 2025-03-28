@@ -1,3 +1,5 @@
+/*Esta clase recibe la información y la muestra*/
+
 package com.capacitacion2.databetweenactivities
 
 import android.os.Bundle
@@ -9,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.TextView
 import android.widget.Button
-import android.widget.Toast
 
 class SecondActivity : AppCompatActivity()
 {
@@ -27,6 +28,7 @@ class SecondActivity : AppCompatActivity()
         }
 
         var texto = findViewById<TextView>(R.id.texto2)
+        //recibe el input de la primera actividad
         val bundle = intent.extras
         val data = bundle?.getString("userdata")
         texto.text = data.toString()
@@ -34,7 +36,7 @@ class SecondActivity : AppCompatActivity()
         val btn2 = findViewById<Button>(R.id.btnAct2)
         btn2.setOnClickListener()
         {
-            val intent = Intent(applicationContext, SecondActivity::class.java)
+            val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
         }
     }
