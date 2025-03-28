@@ -54,11 +54,12 @@ class MainActivity : AppCompatActivity()
             if(isChecked)
             {
                 //valida que el usuario introdujo los datos correctamente
-                if(etName.text.toString() != "" && etPhone.text.toString() != "") {
-                    val prefEditor: SharedPreferences.Editor = userInformation.edit()
+                if(etName.text.toString().isNotEmpty() && etPhone.text.toString().isNotEmpty())
+                {
+                    val prefEditor : SharedPreferences.Editor = userInformation.edit()
                     prefEditor.putString("name", etName.text.toString())
                     prefEditor.putString("phone", etPhone.text.toString())
-                    prefEditor.apply()
+                    prefEditor.apply() //se almacenan las preferencias del usuario
 
                     var un : String? = userInformation.getString("name", "XXX")
                     var up : String? = userInformation.getString("phone", "XXX")
@@ -73,17 +74,17 @@ class MainActivity : AppCompatActivity()
                     tvSavedName.visibility = View.VISIBLE
                     tvSavedPhone.visibility = View.VISIBLE
 
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_guardado)
+                    val col = ContextCompat.getColor(applicationContext, R.color.brat)
+                    val texto = ContextCompat.getString(applicationContext, R.string.toast_guardado)
                     showToast(texto, col)
 
-                    etName.setText("") //borra los datos del editText después de guardarlos
-                    etPhone.setText("")
+                    etName.text.clear() //borra los datos del editText después de guardarlos
+                    etPhone.text.clear()
                 }
                 else //si falto algun dato regresa el togglebutton a su estado inicial
                 {
-                    val col = ContextCompat.getColor(getApplicationContext(), R.color.rojosangre)
-                    val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_vacio)
+                    val col = ContextCompat.getColor(applicationContext, R.color.rojosangre)
+                    val texto = ContextCompat.getString(applicationContext, R.string.toast_vacio)
                     showToast(texto, col)
                     btnSave.isChecked = false
                 }
@@ -97,15 +98,15 @@ class MainActivity : AppCompatActivity()
                 tvSavedName.visibility = View.INVISIBLE
                 tvSavedPhone.visibility = View.INVISIBLE
 
-                val col = ContextCompat.getColor(getApplicationContext(), R.color.brat)
-                val texto = ContextCompat.getString(getApplicationContext(), R.string.toast_borrado)
+                val col = ContextCompat.getColor(applicationContext, R.color.brat)
+                val texto = ContextCompat.getString(applicationContext, R.string.toast_borrado)
                 showToast(texto, col)
             }
         })
     }
 
     //muestra un toast personalizado
-    private fun showToast(texto: String, color: Int)
+    private fun showToast(texto : String, color : Int)
     {
         val inflater = layoutInflater
         val layout = inflater.inflate(R.layout.custom_toast, findViewById(R.id.main), false)
